@@ -30,7 +30,6 @@ function generateProducts() {
   let productId = 1;
   for (let i = 1; i < 44; i++) {
     const productName = productNames[i - 1];
-    const productOwner = developers[Math.floor(Math.random() * developers.length)];
     const developersCopy = [...developers];
     const developersCount = Math.floor(Math.random() * 5) + 2;
     const selectedDevelopers = [];
@@ -39,6 +38,7 @@ function generateProducts() {
       selectedDevelopers.push(developersCopy[index]);
       developersCopy.splice(index, 1);
     }
+    const productOwner = selectedDevelopers[0];
     let scrumDecider = Math.random();
     const startDate = new Date(new Date().setFullYear(new Date().getFullYear() - Math.floor(Math.random() * 4))).toISOString().split('T')[0];
     const methodology = Math.random() < 0.5 ? "Waterfall" : "Agile";
@@ -64,151 +64,154 @@ const returnPremadeProducts = function () {
     1: {
       productId: 1,
       productName: "NovaForge",
-      productOwnerName: "Devin Harris",
+      productOwnerName: "Jenna Martin",
       Developers: [
-        "Logan Taylor",
+        "Jenna Martin",
         "Jared Thomas"
       ],
-      scrumMasterName: "Julie Robinson",
-      startDate: "2020-03-26",
+      scrumMasterName: "Jennifer Garcia",
+      startDate: "2023-03-26",
       methodology: "Agile"
     },
     2: {
       productId: 2,
       productName: "VaporQuest",
-      productOwnerName: "Clay Jackson",
+      productOwnerName: "Jared Thomas",
       Developers: [
-        "Clay Jackson",
-        "Kelsea Williams",
+        "Jared Thomas",
+        "Cameron Johnson",
+        "Trevor Smith",
         "Gino Brown",
-        "Crystal Anderson"
+        "Jessica Miller",
+        "Jenna Martin"
+      ],
+      scrumMasterName: "Jennifer Garcia",
+      startDate: "2023-03-26",
+      methodology: "Waterfall"
+    },
+    3: {
+      productId: 3,
+      productName: "RazorCore",
+      productOwnerName: "Jessica Miller",
+      Developers: [
+        "Jessica Miller",
+        "Trevor Smith",
+        "Shyla Davis",
+        "Jenna Martin"
       ],
       scrumMasterName: "Jason Chen",
       startDate: "2022-03-26",
       methodology: "Agile"
     },
-    3: {
-      productId: 3,
-      productName: "RazorCore",
-      productOwnerName: "Cameron Johnson",
-      Developers: [
-        "Gino Brown",
-        "Jenna Martin",
-        "Justin Wilson"
-      ],
-      scrumMasterName: "Jason Chen",
-      startDate: "2023-03-26",
-      methodology: "Agile"
-    },
     4: {
       productId: 4,
       productName: "ChromeSpark",
-      productOwnerName: "Devin Harris",
+      productOwnerName: "Justin Wilson",
       Developers: [
-        "Donnell Doe",
+        "Justin Wilson",
+        "Crystal Anderson",
+        "Clay Jackson",
         "Kelsea Williams"
       ],
-      scrumMasterName: "Jason Chen",
+      scrumMasterName: "Julie Robinson",
       startDate: "2022-03-26",
       methodology: "Agile"
     },
     5: {
       productId: 5,
       productName: "SolarHive",
-      productOwnerName: "Sasha Lee",
+      productOwnerName: "Clay Jackson",
       Developers: [
+        "Clay Jackson",
         "Logan Taylor",
-        "Jenna Martin",
-        "Kelsea Williams",
+        "Crystal Anderson",
         "Donnell Doe",
-        "Devin Harris"
+        "Kelsea Williams",
+        "Jared Thomas"
       ],
       scrumMasterName: "Jennifer Garcia",
-      startDate: "2021-03-26",
+      startDate: "2020-03-26",
       methodology: "Agile"
     },
     6: {
       productId: 6,
       productName: "LaserLance",
-      productOwnerName: "Cameron Johnson",
+      productOwnerName: "Jenna Martin",
       Developers: [
-        "Jessica Miller",
-        "Shyla Davis",
-        "Devin Harris",
-        "Clay Jackson",
+        "Jenna Martin",
+        "Jared Thomas",
+        "Cameron Johnson",
         "Gino Brown"
       ],
-      scrumMasterName: "Julie Robinson",
-      startDate: "2023-03-26",
+      scrumMasterName: "Jennifer Garcia",
+      startDate: "2021-03-26",
       methodology: "Waterfall"
     },
     7: {
       productId: 7,
       productName: "GalaxyPulse",
-      productOwnerName: "Donnell Doe",
+      productOwnerName: "Clay Jackson",
       Developers: [
-        "Gino Brown",
-        "Justin Wilson",
-        "Logan Taylor",
-        "Jared Thomas",
-        "Devin Harris",
-        "Cameron Johnson"
+        "Clay Jackson",
+        "Donnell Doe",
+        "Crystal Anderson",
+        "Shyla Davis"
       ],
       scrumMasterName: "Julie Robinson",
-      startDate: "2022-03-26",
-      methodology: "Agile"
+      startDate: "2023-03-26",
+      methodology: "Waterfall"
     },
     8: {
       productId: 8,
       productName: "ThunderWave",
-      productOwnerName: "Sasha Lee",
+      productOwnerName: "Cameron Johnson",
       Developers: [
-        "Kelsea Williams",
         "Cameron Johnson",
-        "Donnell Doe"
+        "Trevor Smith",
+        "Clay Jackson",
+        "Jenna Martin",
+        "Crystal Anderson"
       ],
-      scrumMasterName: "Julie Robinson",
-      startDate: "2023-03-26",
-      methodology: "Agile"
+      scrumMasterName: "Jennifer Garcia",
+      startDate: "2022-03-26",
+      methodology: "Waterfall"
     },
     9: {
       productId: 9,
       productName: "PixelBloom",
       productOwnerName: "Cameron Johnson",
       Developers: [
-        "Logan Taylor",
-        "Gino Brown"
+        "Cameron Johnson",
+        "Shyla Davis"
+      ],
+      scrumMasterName: "Julie Robinson",
+      startDate: "2022-03-26",
+      methodology: "Agile"
+    },
+    10: {
+      productId: 10,
+      productName: "CyberPhoenix",
+      productOwnerName: "Shyla Davis",
+      Developers: [
+        "Shyla Davis",
+        "Trevor Smith",
+        "Jared Thomas",
+        "Crystal Anderson",
+        "Justin Wilson"
       ],
       scrumMasterName: "Jason Chen",
       startDate: "2023-03-26",
       methodology: "Waterfall"
     },
-    10: {
-      productId: 10,
-      productName: "CyberPhoenix",
-      productOwnerName: "Trevor Smith",
-      Developers: [
-        "Logan Taylor",
-        "Kelsea Williams",
-        "Jessica Miller",
-        "Donnell Doe",
-        "Crystal Anderson",
-        "Devin Harris"
-      ],
-      scrumMasterName: "Jason Chen",
-      startDate: "2022-03-26",
-      methodology: "Waterfall"
-    },
     11: {
       productId: 11,
       productName: "MagmaLuxe",
-      productOwnerName: "Justin Wilson",
+      productOwnerName: "Jessica Miller",
       Developers: [
-        "Kelsea Williams",
-        "Logan Taylor",
-        "Gino Brown",
-        "Shyla Davis",
-        "Cameron Johnson"
+        "Jessica Miller",
+        "Trevor Smith",
+        "Justin Wilson",
+        "Kelsea Williams"
       ],
       scrumMasterName: "Jason Chen",
       startDate: "2021-03-26",
@@ -217,103 +220,112 @@ const returnPremadeProducts = function () {
     12: {
       productId: 12,
       productName: "CosmoJolt",
-      productOwnerName: "Sasha Lee",
+      productOwnerName: "Cameron Johnson",
       Developers: [
-        "Shyla Davis",
-        "Kelsea Williams",
+        "Cameron Johnson",
+        "Jessica Miller",
+        "Clay Jackson",
+        "Logan Taylor",
+        "Justin Wilson",
         "Trevor Smith"
       ],
-      scrumMasterName: "Julie Robinson",
-      startDate: "2021-03-26",
-      methodology: "Agile"
+      scrumMasterName: "Jennifer Garcia",
+      startDate: "2020-03-26",
+      methodology: "Waterfall"
     },
     13: {
       productId: 13,
       productName: "NeonNexus",
-      productOwnerName: "Justin Wilson",
+      productOwnerName: "Jared Thomas",
       Developers: [
-        "Justin Wilson",
-        "Devin Harris",
-        "Clay Jackson",
-        "Donnell Doe",
-        "Logan Taylor",
-        "Trevor Smith"
+        "Jared Thomas",
+        "Sasha Lee"
       ],
-      scrumMasterName: "Julie Robinson",
-      startDate: "2020-03-26",
-      methodology: "Waterfall"
+      scrumMasterName: "Jason Chen",
+      startDate: "2023-03-26",
+      methodology: "Agile"
     },
     14: {
       productId: 14,
       productName: "TidalSurge",
-      productOwnerName: "Jenna Martin",
+      productOwnerName: "Trevor Smith",
       Developers: [
-        "Jessica Miller",
-        "Jenna Martin"
-      ],
-      scrumMasterName: "Julie Robinson",
-      startDate: "2020-03-26",
-      methodology: "Waterfall"
-    },
-    15: {
-      productId: 15,
-      productName: "TitanForge",
-      productOwnerName: "Donnell Doe",
-      Developers: [
-        "Clay Jackson",
-        "Sasha Lee"
-      ],
-      scrumMasterName: "Jason Chen",
-      startDate: "2021-03-26",
-      methodology: "Waterfall"
-    },
-    16: {
-      productId: 16,
-      productName: "ArcaneFusion",
-      productOwnerName: "Clay Jackson",
-      Developers: [
+        "Trevor Smith",
         "Donnell Doe",
         "Shyla Davis",
         "Justin Wilson"
       ],
       scrumMasterName: "Julie Robinson",
-      startDate: "2023-03-26",
-      methodology: "Waterfall"
+      startDate: "2020-03-26",
+      methodology: "Agile"
     },
-    17: {
-      productId: 17,
-      productName: "CrystalPeak",
-      productOwnerName: "Sasha Lee",
+    15: {
+      productId: 15,
+      productName: "TitanForge",
+      productOwnerName: "Clay Jackson",
       Developers: [
-        "Jared Thomas",
-        "Crystal Anderson"
+        "Clay Jackson",
+        "Shyla Davis",
+        "Gino Brown",
+        "Trevor Smith",
+        "Sasha Lee"
       ],
       scrumMasterName: "Jason Chen",
       startDate: "2022-03-26",
       methodology: "Agile"
     },
+    16: {
+      productId: 16,
+      productName: "ArcaneFusion",
+      productOwnerName: "Devin Harris",
+      Developers: [
+        "Devin Harris",
+        "Clay Jackson",
+        "Kelsea Williams",
+        "Logan Taylor",
+        "Jessica Miller"
+      ],
+      scrumMasterName: "Jennifer Garcia",
+      startDate: "2021-03-26",
+      methodology: "Agile"
+    },
+    17: {
+      productId: 17,
+      productName: "CrystalPeak",
+      productOwnerName: "Jared Thomas",
+      Developers: [
+        "Jared Thomas",
+        "Clay Jackson",
+        "Shyla Davis",
+        "Jessica Miller"
+      ],
+      scrumMasterName: "Julie Robinson",
+      startDate: "2023-03-26",
+      methodology: "Agile"
+    },
     18: {
       productId: 18,
       productName: "ZenithX",
-      productOwnerName: "Sasha Lee",
+      productOwnerName: "Donnell Doe",
       Developers: [
-        "Trevor Smith",
-        "Clay Jackson",
-        "Gino Brown",
-        "Jenna Martin",
-        "Crystal Anderson"
+        "Donnell Doe",
+        "Crystal Anderson",
+        "Cameron Johnson",
+        "Gino Brown"
       ],
-      scrumMasterName: "Jennifer Garcia",
-      startDate: "2023-03-26",
-      methodology: "Agile"
+      scrumMasterName: "Jason Chen",
+      startDate: "2020-03-26",
+      methodology: "Waterfall"
     },
     19: {
       productId: 19,
       productName: "AstralBurst",
-      productOwnerName: "Shyla Davis",
+      productOwnerName: "Jessica Miller",
       Developers: [
-        "Jenna Martin",
-        "Cameron Johnson"
+        "Jessica Miller",
+        "Crystal Anderson",
+        "Clay Jackson",
+        "Justin Wilson"
       ],
       scrumMasterName: "Jennifer Garcia",
       startDate: "2021-03-26",
@@ -322,122 +334,111 @@ const returnPremadeProducts = function () {
     20: {
       productId: 20,
       productName: "AtomicBlaze",
-      productOwnerName: "Devin Harris",
+      productOwnerName: "Jessica Miller",
       Developers: [
-        "Trevor Smith",
-        "Logan Taylor",
-        "Jenna Martin",
-        "Gino Brown",
-        "Clay Jackson",
-        "Donnell Doe"
+        "Jessica Miller",
+        "Donnell Doe",
+        "Kelsea Williams",
+        "Crystal Anderson",
+        "Jared Thomas"
       ],
-      scrumMasterName: "Jennifer Garcia",
-      startDate: "2022-03-26",
+      scrumMasterName: "Julie Robinson",
+      startDate: "2020-03-26",
       methodology: "Agile"
     },
     21: {
       productId: 21,
       productName: "ChaosStorm",
-      productOwnerName: "Sasha Lee",
-      Developers: [
-        "Jenna Martin",
-        "Shyla Davis",
-        "Logan Taylor",
-        "Crystal Anderson",
-        "Donnell Doe",
-        "Trevor Smith"
-      ],
-      scrumMasterName: "Jennifer Garcia",
-      startDate: "2021-03-26",
-      methodology: "Agile"
-    },
-    22: {
-      productId: 22,
-      productName: "EchoSphere",
       productOwnerName: "Shyla Davis",
       Developers: [
-        "Jared Thomas",
-        "Crystal Anderson",
-        "Logan Taylor",
-        "Donnell Doe"
-      ],
-      scrumMasterName: "Jennifer Garcia",
-      startDate: "2021-03-26",
-      methodology: "Waterfall"
-    },
-    23: {
-      productId: 23,
-      productName: "RadiantHorizon",
-      productOwnerName: "Clay Jackson",
-      Developers: [
-        "Jenna Martin",
-        "Cameron Johnson",
-        "Donnell Doe",
-        "Logan Taylor",
+        "Shyla Davis",
         "Justin Wilson",
-        "Clay Jackson"
+        "Trevor Smith",
+        "Crystal Anderson",
+        "Jared Thomas"
       ],
       scrumMasterName: "Julie Robinson",
       startDate: "2023-03-26",
       methodology: "Waterfall"
     },
+    22: {
+      productId: 22,
+      productName: "EchoSphere",
+      productOwnerName: "Donnell Doe",
+      Developers: [
+        "Donnell Doe",
+        "Gino Brown",
+        "Jared Thomas",
+        "Jenna Martin",
+        "Jessica Miller"
+      ],
+      scrumMasterName: "Julie Robinson",
+      startDate: "2023-03-26",
+      methodology: "Waterfall"
+    },
+    23: {
+      productId: 23,
+      productName: "RadiantHorizon",
+      productOwnerName: "Logan Taylor",
+      Developers: [
+        "Logan Taylor",
+        "Clay Jackson",
+        "Gino Brown"
+      ],
+      scrumMasterName: "Julie Robinson",
+      startDate: "2020-03-26",
+      methodology: "Waterfall"
+    },
     24: {
       productId: 24,
       productName: "EclipseVortex",
-      productOwnerName: "Donnell Doe",
+      productOwnerName: "Crystal Anderson",
       Developers: [
-        "Jared Thomas",
-        "Cameron Johnson",
-        "Sasha Lee"
+        "Crystal Anderson",
+        "Kelsea Williams",
+        "Jared Thomas"
       ],
       scrumMasterName: "Jason Chen",
-      startDate: "2023-03-26",
-      methodology: "Agile"
+      startDate: "2021-03-26",
+      methodology: "Waterfall"
     },
     25: {
       productId: 25,
       productName: "GalacticCrest",
-      productOwnerName: "Jenna Martin",
+      productOwnerName: "Shyla Davis",
       Developers: [
-        "Cameron Johnson",
-        "Kelsea Williams",
-        "Gino Brown",
-        "Jessica Miller",
-        "Jared Thomas",
-        "Trevor Smith"
+        "Shyla Davis",
+        "Crystal Anderson",
+        "Gino Brown"
       ],
-      scrumMasterName: "Jason Chen",
-      startDate: "2022-03-26",
+      scrumMasterName: "Julie Robinson",
+      startDate: "2021-03-26",
       methodology: "Agile"
     },
     26: {
       productId: 26,
       productName: "PhoenixPulse",
-      productOwnerName: "Kelsea Williams",
+      productOwnerName: "Gino Brown",
       Developers: [
-        "Jenna Martin",
-        "Shyla Davis",
         "Gino Brown",
-        "Clay Jackson",
-        "Crystal Anderson"
+        "Donnell Doe"
       ],
-      scrumMasterName: "Jennifer Garcia",
-      startDate: "2022-03-26",
+      scrumMasterName: "Julie Robinson",
+      startDate: "2021-03-26",
       methodology: "Waterfall"
     },
     27: {
       productId: 27,
       productName: "NebulaFlash",
-      productOwnerName: "Kelsea Williams",
+      productOwnerName: "Clay Jackson",
       Developers: [
-        "Crystal Anderson",
-        "Jessica Miller",
-        "Trevor Smith",
-        "Donnell Doe"
+        "Clay Jackson",
+        "Sasha Lee",
+        "Gino Brown"
       ],
-      scrumMasterName: "Jason Chen",
-      startDate: "2022-03-26",
-      methodology: "Waterfall"
+      scrumMasterName: "Jennifer Garcia",
+      startDate: "2023-03-26",
+      methodology: "Agile"
     },
     28: {
       productId: 28,
@@ -446,166 +447,156 @@ const returnPremadeProducts = function () {
       Developers: [
         "Kelsea Williams",
         "Logan Taylor",
-        "Trevor Smith",
-        "Sasha Lee",
-        "Devin Harris",
-        "Crystal Anderson"
+        "Jenna Martin"
       ],
-      scrumMasterName: "Jennifer Garcia",
-      startDate: "2021-03-26",
+      scrumMasterName: "Jason Chen",
+      startDate: "2020-03-26",
       methodology: "Agile"
     },
     29: {
       productId: 29,
       productName: "SonicSprint",
-      productOwnerName: "Devin Harris",
+      productOwnerName: "Cameron Johnson",
       Developers: [
-        "Gino Brown",
-        "Justin Wilson",
-        "Crystal Anderson"
+        "Cameron Johnson",
+        "Shyla Davis"
       ],
       scrumMasterName: "Julie Robinson",
-      startDate: "2021-03-26",
-      methodology: "Agile"
+      startDate: "2020-03-26",
+      methodology: "Waterfall"
     },
     30: {
       productId: 30,
       productName: "StarForge",
-      productOwnerName: "Crystal Anderson",
+      productOwnerName: "Kelsea Williams",
       Developers: [
-        "Shyla Davis",
-        "Jenna Martin",
-        "Donnell Doe"
+        "Kelsea Williams",
+        "Jessica Miller",
+        "Devin Harris",
+        "Jared Thomas"
       ],
-      scrumMasterName: "Julie Robinson",
-      startDate: "2022-03-26",
-      methodology: "Waterfall"
+      scrumMasterName: "Jennifer Garcia",
+      startDate: "2020-03-26",
+      methodology: "Agile"
     },
     31: {
       productId: 31,
       productName: "Thunderbolt",
-      productOwnerName: "Cameron Johnson",
+      productOwnerName: "Trevor Smith",
       Developers: [
-        "Logan Taylor",
-        "Donnell Doe",
-        "Devin Harris"
+        "Trevor Smith",
+        "Gino Brown",
+        "Jessica Miller",
+        "Devin Harris",
+        "Kelsea Williams"
       ],
       scrumMasterName: "Jason Chen",
-      startDate: "2023-03-26",
-      methodology: "Waterfall"
+      startDate: "2020-03-26",
+      methodology: "Agile"
     },
     32: {
       productId: 32,
       productName: "VoltageStrike",
-      productOwnerName: "Logan Taylor",
+      productOwnerName: "Sasha Lee",
       Developers: [
-        "Crystal Anderson",
-        "Trevor Smith",
+        "Sasha Lee",
+        "Cameron Johnson",
+        "Donnell Doe",
         "Jenna Martin"
+      ],
+      scrumMasterName: "Jason Chen",
+      startDate: "2020-03-26",
+      methodology: "Waterfall"
+    },
+    33: {
+      productId: 33,
+      productName: "PlasmaSurge",
+      productOwnerName: "Jessica Miller",
+      Developers: [
+        "Jessica Miller",
+        "Justin Wilson",
+        "Gino Brown",
+        "Trevor Smith",
+        "Kelsea Williams",
+        "Jared Thomas"
       ],
       scrumMasterName: "Jennifer Garcia",
       startDate: "2023-03-26",
       methodology: "Agile"
     },
-    33: {
-      productId: 33,
-      productName: "PlasmaSurge",
-      productOwnerName: "Clay Jackson",
-      Developers: [
-        "Crystal Anderson",
-        "Jared Thomas",
-        "Kelsea Williams",
-        "Clay Jackson",
-        "Logan Taylor"
-      ],
-      scrumMasterName: "Jason Chen",
-      startDate: "2020-03-26",
-      methodology: "Waterfall"
-    },
     34: {
       productId: 34,
       productName: "MysticRift",
-      productOwnerName: "Shyla Davis",
+      productOwnerName: "Logan Taylor",
       Developers: [
-        "Gino Brown",
-        "Jessica Miller",
-        "Justin Wilson",
+        "Logan Taylor",
+        "Clay Jackson",
+        "Jenna Martin",
         "Crystal Anderson",
-        "Shyla Davis"
+        "Jessica Miller"
       ],
       scrumMasterName: "Julie Robinson",
-      startDate: "2020-03-26",
-      methodology: "Waterfall"
+      startDate: "2022-03-26",
+      methodology: "Agile"
     },
     35: {
       productId: 35,
       productName: "IcePulse",
-      productOwnerName: "Trevor Smith",
+      productOwnerName: "Jenna Martin",
       Developers: [
-        "Cameron Johnson",
-        "Kelsea Williams",
-        "Clay Jackson",
-        "Justin Wilson",
-        "Jessica Miller"
+        "Jenna Martin",
+        "Justin Wilson"
       ],
-      scrumMasterName: "Julie Robinson",
-      startDate: "2021-03-26",
+      scrumMasterName: "Jennifer Garcia",
+      startDate: "2023-03-26",
       methodology: "Agile"
     },
     36: {
       productId: 36,
       productName: "InfernoSpark",
-      productOwnerName: "Crystal Anderson",
+      productOwnerName: "Cameron Johnson",
       Developers: [
-        "Clay Jackson",
-        "Logan Taylor",
-        "Gino Brown",
-        "Sasha Lee",
-        "Devin Harris",
+        "Cameron Johnson",
         "Donnell Doe"
       ],
       scrumMasterName: "Julie Robinson",
-      startDate: "2022-03-26",
-      methodology: "Waterfall"
+      startDate: "2021-03-26",
+      methodology: "Agile"
     },
     37: {
       productId: 37,
       productName: "FusionFrenzy",
-      productOwnerName: "Sasha Lee",
+      productOwnerName: "Clay Jackson",
       Developers: [
-        "Crystal Anderson",
-        "Jared Thomas",
-        "Jenna Martin",
-        "Clay Jackson"
+        "Clay Jackson",
+        "Jessica Miller",
+        "Shyla Davis"
       ],
-      scrumMasterName: "Julie Robinson",
+      scrumMasterName: "Jennifer Garcia",
       startDate: "2023-03-26",
-      methodology: "Agile"
+      methodology: "Waterfall"
     },
     38: {
       productId: 38,
       productName: "EnergyRush",
-      productOwnerName: "Trevor Smith",
+      productOwnerName: "Kelsea Williams",
       Developers: [
-        "Donnell Doe",
         "Kelsea Williams",
-        "Shyla Davis"
+        "Clay Jackson"
       ],
-      scrumMasterName: "Jason Chen",
+      scrumMasterName: "Julie Robinson",
       startDate: "2022-03-26",
       methodology: "Waterfall"
     },
     39: {
       productId: 39,
       productName: "DreamScape",
-      productOwnerName: "Shyla Davis",
+      productOwnerName: "Kelsea Williams",
       Developers: [
-        "Sasha Lee",
-        "Cameron Johnson",
-        "Justin Wilson",
-        "Jessica Miller",
         "Kelsea Williams",
-        "Jared Thomas"
+        "Cameron Johnson",
+        "Jessica Miller",
+        "Logan Taylor"
       ],
       scrumMasterName: "Jennifer Garcia",
       startDate: "2023-03-26",
@@ -614,53 +605,60 @@ const returnPremadeProducts = function () {
     40: {
       productId: 40,
       productName: "CosmicNova",
-      productOwnerName: "Donnell Doe",
+      productOwnerName: "Justin Wilson",
       Developers: [
-        "Gino Brown",
-        "Donnell Doe"
-      ],
-      scrumMasterName: "Jason Chen",
-      startDate: "2021-03-26",
-      methodology: "Waterfall"
-    },
-    41: {
-      productId: 41,
-      productName: "BlazeFusion",
-      productOwnerName: "Kelsea Williams",
-      Developers: [
-        "Cameron Johnson",
-        "Donnell Doe"
+        "Justin Wilson",
+        "Sasha Lee",
+        "Clay Jackson",
+        "Logan Taylor"
       ],
       scrumMasterName: "Julie Robinson",
       startDate: "2020-03-26",
       methodology: "Agile"
     },
+    41: {
+      productId: 41,
+      productName: "BlazeFusion",
+      productOwnerName: "Trevor Smith",
+      Developers: [
+        "Trevor Smith",
+        "Jessica Miller",
+        "Devin Harris",
+        "Donnell Doe",
+        "Kelsea Williams",
+        "Gino Brown"
+      ],
+      scrumMasterName: "Jason Chen",
+      startDate: "2022-03-26",
+      methodology: "Waterfall"
+    },
     42: {
       productId: 42,
       productName: "AtomForge",
-      productOwnerName: "Devin Harris",
+      productOwnerName: "Kelsea Williams",
       Developers: [
-        "Crystal Anderson",
-        "Clay Jackson",
-        "Shyla Davis",
-        "Devin Harris",
-        "Justin Wilson"
+        "Kelsea Williams",
+        "Jared Thomas",
+        "Justin Wilson",
+        "Jessica Miller",
+        "Jenna Martin"
       ],
-      scrumMasterName: "Jennifer Garcia",
-      startDate: "2021-03-26",
+      scrumMasterName: "Jason Chen",
+      startDate: "2022-03-26",
       methodology: "Agile"
     },
     43: {
       productId: 43,
       productName: "InfinityBurst",
-      productOwnerName: "Jenna Martin",
+      productOwnerName: "Clay Jackson",
       Developers: [
-        "Crystal Anderson",
-        "Shyla Davis",
+        "Clay Jackson",
+        "Justin Wilson",
         "Sasha Lee",
-        "Donnell Doe"
+        "Shyla Davis",
+        "Trevor Smith"
       ],
-      scrumMasterName: "Julie Robinson",
+      scrumMasterName: "Jennifer Garcia",
       startDate: "2020-03-26",
       methodology: "Agile"
     }

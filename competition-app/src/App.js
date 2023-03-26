@@ -1,5 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+
+const backendURL = 'http://localhost:3000'
+
+axios
+  .get(`${backendURL}/api`, {
+    headers: {
+      'content-type': 'application/json',
+    },
+  })
+  .then((res) => {
+    // if server returns 200 (success)
+    if (res.status === 200) {
+      console.log(res);
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 function App() {
   return (
