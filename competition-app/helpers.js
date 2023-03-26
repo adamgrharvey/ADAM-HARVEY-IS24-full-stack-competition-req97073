@@ -31,7 +31,7 @@ function generateProducts() {
   for (let i = 1; i < 44; i++) {
     const productName = productNames[i - 1];
     const developersCopy = [...developers];
-    const developersCount = Math.floor(Math.random() * 5) + 2;
+    const developersCount = Math.floor(Math.random() * 5);
     const selectedDevelopers = [];
     for (let j = 0; j < developersCount; j++) {
       const index = Math.floor(Math.random() * developersCopy.length);
@@ -79,7 +79,6 @@ const returnPremadeProducts = function () {
       productOwnerName: "Jared Thomas",
       Developers: [
         "Jared Thomas",
-        "Cameron Johnson",
         "Trevor Smith",
         "Gino Brown",
         "Jessica Miller",
@@ -125,7 +124,6 @@ const returnPremadeProducts = function () {
         "Clay Jackson",
         "Logan Taylor",
         "Crystal Anderson",
-        "Donnell Doe",
         "Kelsea Williams",
         "Jared Thomas"
       ],
@@ -226,8 +224,7 @@ const returnPremadeProducts = function () {
         "Jessica Miller",
         "Clay Jackson",
         "Logan Taylor",
-        "Justin Wilson",
-        "Trevor Smith"
+        "Justin Wilson"
       ],
       scrumMasterName: "Jennifer Garcia",
       startDate: "2020-03-26",
@@ -514,7 +511,6 @@ const returnPremadeProducts = function () {
       productOwnerName: "Jessica Miller",
       Developers: [
         "Jessica Miller",
-        "Justin Wilson",
         "Gino Brown",
         "Trevor Smith",
         "Kelsea Williams",
@@ -624,7 +620,6 @@ const returnPremadeProducts = function () {
         "Trevor Smith",
         "Jessica Miller",
         "Devin Harris",
-        "Donnell Doe",
         "Kelsea Williams",
         "Gino Brown"
       ],

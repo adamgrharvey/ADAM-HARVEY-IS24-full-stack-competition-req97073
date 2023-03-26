@@ -28,7 +28,7 @@ const createFakeData = function () {
 
     productName: "NovaForge",
     productOwnerName: "Jenna Martin",
-    Developers: [
+    developers: [
       "Jenna Martin",
       "Jared Thomas"
     ],
