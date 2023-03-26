@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
-
+import ProductList from './components/ProductList';
 const backendURL = 'http://localhost:3000'
 
 const getApi = function () {
@@ -14,7 +14,7 @@ const getApi = function () {
     .then((res) => {
       // if server returns 200 (success)
       if (res.status === 200) {
-        console.log(res.data);
+        return (res.data);
       }
     })
     .catch((err) => {
@@ -106,6 +106,8 @@ function App() {
       <button
         onClick={edit}
       >Edit</button>
+      <ProductList />
+
     </div>
   );
 }

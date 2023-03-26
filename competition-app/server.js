@@ -1,19 +1,25 @@
+// Express.js initialization
 const express = require('express');
 const app = express();
 const port = 3000;
+// Functions for our Seed data.
 const helpers = require('./helpers');
+// Fixes issues with CORS between Front-end and Backend.
 const cors = require('cors');
-
 app.use(cors());
 
+// Read JSON data from frontend.
 app.use(express.json());
+// More CORS fixing, allow all the things.
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
+// Set Product list using our Seed data. See './helpers.js' for details.
 let products = helpers.returnPremadeProducts();
+
 /*
 |||||||
 | GET |
@@ -23,7 +29,6 @@ let products = helpers.returnPremadeProducts();
 // READ all Products. Responds with object of Products.
 app.get('/api', (req, res) => {
   res.send(products);
-
 })
 
 // Health Check. Responds with 200 OK.
@@ -32,9 +37,9 @@ app.get('/api/health', (req, res) => {
 })
 
 /*
-||||||||||||||
-| POST & PUT |
-||||||||||||||
+|||||||
+| PUT |
+|||||||
 */
 
 // Add or Edit information on existing product.
@@ -73,7 +78,7 @@ app.put('/api/products/:id', (req, res) => {
     res.status(417).send(`You must select a Methodology.`);
   }
 
-  // If all checks are passed, we can edit the product.
+  // If all checks pass, we can edit the product.
   else {
     // Then we need to edit the Product and give it the new data.
     products[req.params.id] = {
@@ -92,7 +97,11 @@ app.put('/api/products/:id', (req, res) => {
   }
 })
 
-
+/*
+||||||||
+| POST |
+||||||||
+*/
 
 //CREATE New Product.
 app.post('/api/products', (req, res) => {
@@ -128,7 +137,7 @@ app.post('/api/products', (req, res) => {
     res.status(417).send(`You must select a Methodology.`);
   }
 
-  // If all checks are passed, we can create the new Product.
+  // If all checks pass, we can create the new Product.
   else {
     // Then we need to insert the new Product into our object, using the request data.
     products[newPosition] = {
