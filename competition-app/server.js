@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const helpers = require('./helpers');
 
-let products = helpers.productGenerator(2);
+let products = helpers.returnPremadeProducts();
 /*
 |||||||
 | GET |
