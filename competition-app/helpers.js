@@ -46,7 +46,7 @@ function generateProducts() {
       productId,
       productName,
       productOwnerName: productOwner.firstName + " " + productOwner.lastName,
-      Developers: selectedDevelopers.map(dev => dev.firstName + " " + dev.lastName),
+      developers: selectedDevelopers.map(dev => dev.firstName + " " + dev.lastName),
       scrumMasterName: scrumDecider < 0.33 ? scrumMasters[0].name : scrumDecider < 0.66 ? scrumMasters[1].name : scrumMasters[2].name,
       startDate,
       methodology
@@ -65,7 +65,7 @@ const returnPremadeProducts = function () {
       productId: 1,
       productName: "NovaForge",
       productOwnerName: "Jenna Martin",
-      Developers: [
+      developers: [
         "Jenna Martin",
         "Jared Thomas"
       ],
@@ -77,7 +77,7 @@ const returnPremadeProducts = function () {
       productId: 2,
       productName: "VaporQuest",
       productOwnerName: "Jared Thomas",
-      Developers: [
+      developers: [
         "Jared Thomas",
         "Trevor Smith",
         "Gino Brown",
@@ -92,7 +92,7 @@ const returnPremadeProducts = function () {
       productId: 3,
       productName: "RazorCore",
       productOwnerName: "Jessica Miller",
-      Developers: [
+      developers: [
         "Jessica Miller",
         "Trevor Smith",
         "Shyla Davis",
@@ -106,7 +106,7 @@ const returnPremadeProducts = function () {
       productId: 4,
       productName: "ChromeSpark",
       productOwnerName: "Justin Wilson",
-      Developers: [
+      developers: [
         "Justin Wilson",
         "Crystal Anderson",
         "Clay Jackson",
@@ -120,7 +120,7 @@ const returnPremadeProducts = function () {
       productId: 5,
       productName: "SolarHive",
       productOwnerName: "Clay Jackson",
-      Developers: [
+      developers: [
         "Clay Jackson",
         "Logan Taylor",
         "Crystal Anderson",
@@ -135,7 +135,7 @@ const returnPremadeProducts = function () {
       productId: 6,
       productName: "LaserLance",
       productOwnerName: "Jenna Martin",
-      Developers: [
+      developers: [
         "Jenna Martin",
         "Jared Thomas",
         "Cameron Johnson",
@@ -149,7 +149,7 @@ const returnPremadeProducts = function () {
       productId: 7,
       productName: "GalaxyPulse",
       productOwnerName: "Clay Jackson",
-      Developers: [
+      developers: [
         "Clay Jackson",
         "Donnell Doe",
         "Crystal Anderson",
@@ -163,7 +163,7 @@ const returnPremadeProducts = function () {
       productId: 8,
       productName: "ThunderWave",
       productOwnerName: "Cameron Johnson",
-      Developers: [
+      developers: [
         "Cameron Johnson",
         "Trevor Smith",
         "Clay Jackson",
@@ -178,7 +178,7 @@ const returnPremadeProducts = function () {
       productId: 9,
       productName: "PixelBloom",
       productOwnerName: "Cameron Johnson",
-      Developers: [
+      developers: [
         "Cameron Johnson",
         "Shyla Davis"
       ],
@@ -190,7 +190,7 @@ const returnPremadeProducts = function () {
       productId: 10,
       productName: "CyberPhoenix",
       productOwnerName: "Shyla Davis",
-      Developers: [
+      developers: [
         "Shyla Davis",
         "Trevor Smith",
         "Jared Thomas",
@@ -205,7 +205,7 @@ const returnPremadeProducts = function () {
       productId: 11,
       productName: "MagmaLuxe",
       productOwnerName: "Jessica Miller",
-      Developers: [
+      developers: [
         "Jessica Miller",
         "Trevor Smith",
         "Justin Wilson",
@@ -219,7 +219,7 @@ const returnPremadeProducts = function () {
       productId: 12,
       productName: "CosmoJolt",
       productOwnerName: "Cameron Johnson",
-      Developers: [
+      developers: [
         "Cameron Johnson",
         "Jessica Miller",
         "Clay Jackson",
@@ -234,7 +234,7 @@ const returnPremadeProducts = function () {
       productId: 13,
       productName: "NeonNexus",
       productOwnerName: "Jared Thomas",
-      Developers: [
+      developers: [
         "Jared Thomas",
         "Sasha Lee"
       ],
@@ -246,7 +246,7 @@ const returnPremadeProducts = function () {
       productId: 14,
       productName: "TidalSurge",
       productOwnerName: "Trevor Smith",
-      Developers: [
+      developers: [
         "Trevor Smith",
         "Donnell Doe",
         "Shyla Davis",
@@ -260,7 +260,7 @@ const returnPremadeProducts = function () {
       productId: 15,
       productName: "TitanForge",
       productOwnerName: "Clay Jackson",
-      Developers: [
+      developers: [
         "Clay Jackson",
         "Shyla Davis",
         "Gino Brown",
@@ -275,7 +275,7 @@ const returnPremadeProducts = function () {
       productId: 16,
       productName: "ArcaneFusion",
       productOwnerName: "Devin Harris",
-      Developers: [
+      developers: [
         "Devin Harris",
         "Clay Jackson",
         "Kelsea Williams",
@@ -290,7 +290,7 @@ const returnPremadeProducts = function () {
       productId: 17,
       productName: "CrystalPeak",
       productOwnerName: "Jared Thomas",
-      Developers: [
+      developers: [
         "Jared Thomas",
         "Clay Jackson",
         "Shyla Davis",
@@ -304,7 +304,7 @@ const returnPremadeProducts = function () {
       productId: 18,
       productName: "ZenithX",
       productOwnerName: "Donnell Doe",
-      Developers: [
+      developers: [
         "Donnell Doe",
         "Crystal Anderson",
         "Cameron Johnson",
@@ -318,7 +318,7 @@ const returnPremadeProducts = function () {
       productId: 19,
       productName: "AstralBurst",
       productOwnerName: "Jessica Miller",
-      Developers: [
+      developers: [
         "Jessica Miller",
         "Crystal Anderson",
         "Clay Jackson",
@@ -332,7 +332,7 @@ const returnPremadeProducts = function () {
       productId: 20,
       productName: "AtomicBlaze",
       productOwnerName: "Jessica Miller",
-      Developers: [
+      developers: [
         "Jessica Miller",
         "Donnell Doe",
         "Kelsea Williams",
@@ -347,7 +347,7 @@ const returnPremadeProducts = function () {
       productId: 21,
       productName: "ChaosStorm",
       productOwnerName: "Shyla Davis",
-      Developers: [
+      developers: [
         "Shyla Davis",
         "Justin Wilson",
         "Trevor Smith",
@@ -362,7 +362,7 @@ const returnPremadeProducts = function () {
       productId: 22,
       productName: "EchoSphere",
       productOwnerName: "Donnell Doe",
-      Developers: [
+      developers: [
         "Donnell Doe",
         "Gino Brown",
         "Jared Thomas",
@@ -377,7 +377,7 @@ const returnPremadeProducts = function () {
       productId: 23,
       productName: "RadiantHorizon",
       productOwnerName: "Logan Taylor",
-      Developers: [
+      developers: [
         "Logan Taylor",
         "Clay Jackson",
         "Gino Brown"
@@ -390,7 +390,7 @@ const returnPremadeProducts = function () {
       productId: 24,
       productName: "EclipseVortex",
       productOwnerName: "Crystal Anderson",
-      Developers: [
+      developers: [
         "Crystal Anderson",
         "Kelsea Williams",
         "Jared Thomas"
@@ -403,7 +403,7 @@ const returnPremadeProducts = function () {
       productId: 25,
       productName: "GalacticCrest",
       productOwnerName: "Shyla Davis",
-      Developers: [
+      developers: [
         "Shyla Davis",
         "Crystal Anderson",
         "Gino Brown"
@@ -416,7 +416,7 @@ const returnPremadeProducts = function () {
       productId: 26,
       productName: "PhoenixPulse",
       productOwnerName: "Gino Brown",
-      Developers: [
+      developers: [
         "Gino Brown",
         "Donnell Doe"
       ],
@@ -428,7 +428,7 @@ const returnPremadeProducts = function () {
       productId: 27,
       productName: "NebulaFlash",
       productOwnerName: "Clay Jackson",
-      Developers: [
+      developers: [
         "Clay Jackson",
         "Sasha Lee",
         "Gino Brown"
@@ -441,7 +441,7 @@ const returnPremadeProducts = function () {
       productId: 28,
       productName: "ShadowQuake",
       productOwnerName: "Kelsea Williams",
-      Developers: [
+      developers: [
         "Kelsea Williams",
         "Logan Taylor",
         "Jenna Martin"
@@ -454,7 +454,7 @@ const returnPremadeProducts = function () {
       productId: 29,
       productName: "SonicSprint",
       productOwnerName: "Cameron Johnson",
-      Developers: [
+      developers: [
         "Cameron Johnson",
         "Shyla Davis"
       ],
@@ -466,7 +466,7 @@ const returnPremadeProducts = function () {
       productId: 30,
       productName: "StarForge",
       productOwnerName: "Kelsea Williams",
-      Developers: [
+      developers: [
         "Kelsea Williams",
         "Jessica Miller",
         "Devin Harris",
@@ -480,7 +480,7 @@ const returnPremadeProducts = function () {
       productId: 31,
       productName: "Thunderbolt",
       productOwnerName: "Trevor Smith",
-      Developers: [
+      developers: [
         "Trevor Smith",
         "Gino Brown",
         "Jessica Miller",
@@ -495,7 +495,7 @@ const returnPremadeProducts = function () {
       productId: 32,
       productName: "VoltageStrike",
       productOwnerName: "Sasha Lee",
-      Developers: [
+      developers: [
         "Sasha Lee",
         "Cameron Johnson",
         "Donnell Doe",
@@ -509,7 +509,7 @@ const returnPremadeProducts = function () {
       productId: 33,
       productName: "PlasmaSurge",
       productOwnerName: "Jessica Miller",
-      Developers: [
+      developers: [
         "Jessica Miller",
         "Gino Brown",
         "Trevor Smith",
@@ -524,7 +524,7 @@ const returnPremadeProducts = function () {
       productId: 34,
       productName: "MysticRift",
       productOwnerName: "Logan Taylor",
-      Developers: [
+      developers: [
         "Logan Taylor",
         "Clay Jackson",
         "Jenna Martin",
@@ -539,7 +539,7 @@ const returnPremadeProducts = function () {
       productId: 35,
       productName: "IcePulse",
       productOwnerName: "Jenna Martin",
-      Developers: [
+      developers: [
         "Jenna Martin",
         "Justin Wilson"
       ],
@@ -551,7 +551,7 @@ const returnPremadeProducts = function () {
       productId: 36,
       productName: "InfernoSpark",
       productOwnerName: "Cameron Johnson",
-      Developers: [
+      developers: [
         "Cameron Johnson",
         "Donnell Doe"
       ],
@@ -563,7 +563,7 @@ const returnPremadeProducts = function () {
       productId: 37,
       productName: "FusionFrenzy",
       productOwnerName: "Clay Jackson",
-      Developers: [
+      developers: [
         "Clay Jackson",
         "Jessica Miller",
         "Shyla Davis"
@@ -576,7 +576,7 @@ const returnPremadeProducts = function () {
       productId: 38,
       productName: "EnergyRush",
       productOwnerName: "Kelsea Williams",
-      Developers: [
+      developers: [
         "Kelsea Williams",
         "Clay Jackson"
       ],
@@ -588,7 +588,7 @@ const returnPremadeProducts = function () {
       productId: 39,
       productName: "DreamScape",
       productOwnerName: "Kelsea Williams",
-      Developers: [
+      developers: [
         "Kelsea Williams",
         "Cameron Johnson",
         "Jessica Miller",
@@ -602,7 +602,7 @@ const returnPremadeProducts = function () {
       productId: 40,
       productName: "CosmicNova",
       productOwnerName: "Justin Wilson",
-      Developers: [
+      developers: [
         "Justin Wilson",
         "Sasha Lee",
         "Clay Jackson",
@@ -616,7 +616,7 @@ const returnPremadeProducts = function () {
       productId: 41,
       productName: "BlazeFusion",
       productOwnerName: "Trevor Smith",
-      Developers: [
+      developers: [
         "Trevor Smith",
         "Jessica Miller",
         "Devin Harris",
@@ -631,7 +631,7 @@ const returnPremadeProducts = function () {
       productId: 42,
       productName: "AtomForge",
       productOwnerName: "Kelsea Williams",
-      Developers: [
+      developers: [
         "Kelsea Williams",
         "Jared Thomas",
         "Justin Wilson",
@@ -646,7 +646,7 @@ const returnPremadeProducts = function () {
       productId: 43,
       productName: "InfinityBurst",
       productOwnerName: "Clay Jackson",
-      Developers: [
+      developers: [
         "Clay Jackson",
         "Justin Wilson",
         "Sasha Lee",

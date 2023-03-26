@@ -42,6 +42,8 @@ const createFakeData = function () {
     .post(`${backendURL}/api/products`, postData, {
       headers: {
         'content-type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
       },
     })
     .then((res) => {
@@ -55,6 +57,42 @@ const createFakeData = function () {
     });
 }
 
+const edit = function () {
+
+  let putData = {
+    productName: "VaporQuest",
+    productOwnerName: "Jared Thomas",
+    developers: [
+      "Jared Thomas",
+      "Trevor Smith",
+      "Gino Brown",
+      "Jessica Miller",
+      "Jenna Martin"
+    ],
+    scrumMasterName: "Jennifer Garcia",
+    startDate: "2023-03-26",
+    methodology: "Waterfall"
+  };
+  axios
+    .put(`${backendURL}/api/products/1`, putData, {
+      headers: {
+        'content-type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+      },
+    })
+    .then((res) => {
+      // if server returns 200 (success)
+      if (res.status === 200) {
+        console.log(res);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+}
+
 
 function App() {
   return (
@@ -65,6 +103,9 @@ function App() {
       <button
         onClick={createFakeData}
       >Create</button>
+      <button
+        onClick={edit}
+      >Edit</button>
     </div>
   );
 }
