@@ -2,10 +2,22 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+
+/*
+|||||||
+| GET |
+|||||||
+*/
 app.get('/api', (req, res) => {
-  res.send('Hello orld!');
+  res.send({ title: 'GeeksforGeeks' });
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+// Health Check
+app.get('/api/health', (req, res) => {
+  res.send(200);
 })
+
+app.listen(port, function (err) {
+  if (err) console.log(err);
+  console.log("Server listening on PORT", port);
+});
