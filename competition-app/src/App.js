@@ -4,39 +4,67 @@ import axios from 'axios';
 
 const backendURL = 'http://localhost:3000'
 
-axios
-  .get(`${backendURL}/api`, {
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
-  .then((res) => {
-    // if server returns 200 (success)
-    if (res.status === 200) {
-      console.log(res);
-    }
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+const getApi = function () {
+  axios
+    .get(`${backendURL}/api`, {
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+    .then((res) => {
+      // if server returns 200 (success)
+      if (res.status === 200) {
+        console.log(res.data);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+const createFakeData = function () {
+
+  let postData = {
+
+    productName: "NovaForge",
+    productOwnerName: "Jenna Martin",
+    Developers: [
+      "Jenna Martin",
+      "Jared Thomas"
+    ],
+    scrumMasterName: "Jennifer Garcia",
+    startDate: "2023-03-26",
+    methodology: "Agile"
+
+  };
+
+  axios
+    .post(`${backendURL}/api/products`, postData, {
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+    .then((res) => {
+      // if server returns 200 (success)
+      if (res.status === 200) {
+        console.log(res);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button
+        onClick={getApi}
+      >Get</button>
+      <button
+        onClick={createFakeData}
+      >Create</button>
     </div>
   );
 }

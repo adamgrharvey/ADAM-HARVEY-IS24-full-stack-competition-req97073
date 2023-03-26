@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const helpers = require('./helpers');
 
+app.use(express.json());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -35,7 +36,7 @@ app.get('/api/health', (req, res) => {
 
 //CREATE New Product.
 app.post('/api/products', (req, res) => {
-
+  console.log(req.body);
   // Finds what productId we need to give our new product.
   let newPosition = Object.keys(products).length + 1;
 
@@ -49,6 +50,8 @@ app.post('/api/products', (req, res) => {
     startDate: req.body.startDate,
     methodology: req.body.methodology
   }
+  console.log(`Product ${newPosition}: ${products[newPosition].productName} added!`);
+  res.sendStatus(201);
 })
 
 
