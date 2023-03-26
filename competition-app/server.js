@@ -3,14 +3,17 @@ const app = express();
 const port = 3000;
 const helpers = require('./helpers');
 
-let products = helpers.returnPremadeProducts();
+let products = helpers.generateProducts();
 /*
 |||||||
 | GET |
 |||||||
 */
 app.get('/api', (req, res) => {
+  console.log(Object.keys(products).length);
   res.send(products);
+  
+  
 })
 
 // Health Check
