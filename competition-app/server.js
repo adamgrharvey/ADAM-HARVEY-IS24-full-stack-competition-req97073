@@ -77,7 +77,7 @@ app.put('/api/products/:id', (req, res) => {
   else {
     // Then we need to edit the Product and give it the new data.
     products[req.params.id] = {
-      productId: req.params.id,
+      productId: Number(req.params.id),
       productName: req.body.productName,
       productOwnerName: req.body.productOwnerName,
       Developers: req.body.developers,
