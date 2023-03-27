@@ -42,17 +42,17 @@ export default function ProductList(props) {
 
   if (products !== undefined) {
     return (
-      <div className="text-lg table-wrp block max-h-96">
+      <div className="text-lg font-sans font-medium table-wrp block max-h-96">
         <table className="sticky top-0 ml-5 border-collapse border-spacing-auto border-slate-500 border-b sticky top-0">
           <thead>
-            <tr>
-              <th className="bg-blue-500 sticky top-0 border border-slate-600">Product Number</th>
-              <th className="bg-blue-500 sticky top-0 border border-slate-600">Product Name</th>
-              <th className="bg-blue-500 sticky top-0 border border-slate-600">Scrum Master</th>
-              <th className="bg-blue-500 sticky top-0 border border-slate-600">Product Owner</th>
-              <th className="bg-blue-500 sticky top-0 border border-slate-600">Developers</th>
-              <th className="bg-blue-500 sticky top-0 border border-slate-600">Start Date</th>
-              <th className="bg-blue-500 sticky top-0 border border-slate-600">Methodology</th>
+            <tr className="text-xl text-white">
+              <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Product No.</th>
+              <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Product Name</th>
+              <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Scrum Master</th>
+              <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Product Owner</th>
+              <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Developers</th>
+              <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Start Date</th>
+              <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Methodology</th>
               <th></th>
             </tr>
           </thead>
