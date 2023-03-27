@@ -24,7 +24,17 @@ export default function Product(props) {
         <Button 
         onClick={() => 
           {
-            props.setModalData({id: product.productId});
+            props.setModalData(
+              {
+                id: product.productId,
+                productName: product.productName,
+                scrumMasterName: product.scrumMasterName,
+                productOwnerName: product.productOwnerName,
+                developers: product.developers,
+                startDate: product.startDate,
+                methodology: product.methodology
+              }
+              );
             props.handleOpen();
             
           }}
