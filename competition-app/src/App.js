@@ -97,16 +97,6 @@ const edit = function () {
 function App() {
   return (
     <div className="App">
-      <div>
-        <Button variant="contained"
-          onClick={getApi}
-        >Get</Button>
-        <Button variant="contained" className='!m-5'
-          onClick={createFakeData}
-        >Create</Button>
-        <Button variant="contained"
-          onClick={edit}
-        >Edit</Button></div>
 
       <ProductList />
 

@@ -27,8 +27,6 @@ export default function ProductList(props) {
       });
   }
 
-
-
   useEffect(() => {
     getApi();
   }, [])
@@ -40,10 +38,11 @@ export default function ProductList(props) {
 
   }, [products])
 
+  // If we have the API data (not undefined) return the table.
   if (products !== undefined) {
     return (
-      <div className="text-lg font-sans font-medium table-wrp block max-h-96">
-        <table className="sticky top-0 ml-5 border-collapse border-spacing-auto border-slate-500 border-b sticky top-0">
+      <div className="flex justify-center text-lg mt-5 font-sans font-medium table-wrp block max-h-96">
+        <table className="sticky top-0 border-collapse border-spacing-auto border-slate-500 border-b sticky top-0">
           <thead>
             <tr className="text-xl text-white">
               <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Product No.</th>
@@ -58,7 +57,7 @@ export default function ProductList(props) {
           </thead>
           <tbody className="h-96 overflow-y-auto">
             {Object.values(products).map((i) =>
-              <Product product={i} />)}
+              <Product key={i.productId} product={i} />)}
           </tbody>
         </table>
       </div >

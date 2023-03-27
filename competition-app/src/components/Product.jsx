@@ -2,14 +2,12 @@ import { useState, useEffect } from "react"
 import { Button } from "@mui/material";
 export default function Product(props) {
 
-
-
   const [product, setProduct] = useState(props.product);
 
-  // Sorts Developers Alphabetically when 'product' state changes.
+  // Sorts Developers Alphabetically when Component loads.
   useEffect(() => {
     setProduct((prev) => ({ developers: prev.developers.sort(), ...prev}));
-  },[product])
+  },[])
 
   return (
     <tr>
