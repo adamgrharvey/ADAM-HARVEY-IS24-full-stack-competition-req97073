@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { Button } from '@mui/material';
 import axios from 'axios';
@@ -99,13 +98,13 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Button
-        onClick={getApi}
-      >Get</Button>
-        <Button  className='mt-5'
+        <Button variant="contained"
+          onClick={getApi}
+        >Get</Button>
+        <Button variant="contained" className='!m-5'
           onClick={createFakeData}
         >Create</Button>
-        <Button
+        <Button variant="contained"
           onClick={edit}
         >Edit</Button></div>
 

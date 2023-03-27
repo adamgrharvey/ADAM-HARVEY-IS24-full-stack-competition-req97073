@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import Product from "./Product";
 export default function ProductList(props) {
 
   const backendURL = 'http://localhost:3000'
@@ -43,29 +43,25 @@ export default function ProductList(props) {
   if (products !== undefined) {
     return (
       <div className="text-lg">
-        <table>
-          <tr>
-            <th>Product Number</th>
-            <th>Product Name</th>
-            <th>Scrum Master</th>
-            <th>Product Owner</th>
-            <th>Developers</th>
-            <th>Start Date</th>
-            <th>Methodology</th>
-          </tr>
-          {Object.values(products).map((i, index) =>
+        <table className="ml-5 border-collapse border-spacing-auto border-slate-500">
+          <thead>
             <tr>
-              <td>{i.productId}</td>
-              <td>{i.productName}</td>
-              <td>{i.scrumMasterName}</td>
-              <td>{i.productOwnerName}</td>
-              <td><div>{i.developers && i.developers.map((i) => <div>{`${i}`}</div>)}</div></td>
-              <td>{i.startDate}</td>
-              <td>{i.methodology}</td>
-
-            </tr>)}
+              <th className="border border-slate-600">Product Number</th>
+              <th className="border border-slate-600">Product Name</th>
+              <th className="border border-slate-600">Scrum Master</th>
+              <th className="border border-slate-600">Product Owner</th>
+              <th className="border border-slate-600">Developers</th>
+              <th className="border border-slate-600">Start Date</th>
+              <th className="border border-slate-600">Methodology</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.values(products).map((i) =>
+              <Product product={i} />)}
+          </tbody>
         </table>
-      </div>
+      </div >
     )
   }
 

@@ -11,6 +11,13 @@
   pointer-events: none;
 }
 
+table tr:nth-child(odd) td{
+  background-color: white;
+}
+table tr:nth-child(even) td{
+  background-color: #bdbec0;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
