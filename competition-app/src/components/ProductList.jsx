@@ -42,21 +42,21 @@ export default function ProductList(props) {
 
   if (products !== undefined) {
     return (
-      <div className="text-lg">
-        <table className="ml-5 border-collapse border-spacing-auto border-slate-500">
+      <div className="text-lg table-wrp block max-h-96">
+        <table className="sticky top-0 ml-5 border-collapse border-spacing-auto border-slate-500 border-b sticky top-0">
           <thead>
             <tr>
-              <th className="border border-slate-600">Product Number</th>
-              <th className="border border-slate-600">Product Name</th>
-              <th className="border border-slate-600">Scrum Master</th>
-              <th className="border border-slate-600">Product Owner</th>
-              <th className="border border-slate-600">Developers</th>
-              <th className="border border-slate-600">Start Date</th>
-              <th className="border border-slate-600">Methodology</th>
+              <th className="bg-blue-500 sticky top-0 border border-slate-600">Product Number</th>
+              <th className="bg-blue-500 sticky top-0 border border-slate-600">Product Name</th>
+              <th className="bg-blue-500 sticky top-0 border border-slate-600">Scrum Master</th>
+              <th className="bg-blue-500 sticky top-0 border border-slate-600">Product Owner</th>
+              <th className="bg-blue-500 sticky top-0 border border-slate-600">Developers</th>
+              <th className="bg-blue-500 sticky top-0 border border-slate-600">Start Date</th>
+              <th className="bg-blue-500 sticky top-0 border border-slate-600">Methodology</th>
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="h-96 overflow-y-auto">
             {Object.values(products).map((i) =>
               <Product product={i} />)}
           </tbody>
