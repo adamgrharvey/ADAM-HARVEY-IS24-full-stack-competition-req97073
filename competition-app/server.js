@@ -85,7 +85,7 @@ app.put('/api/products/:id', (req, res) => {
       productId: Number(req.params.id),
       productName: req.body.productName,
       productOwnerName: req.body.productOwnerName,
-      Developers: req.body.developers,
+      developers: req.body.developers,
       scrumMasterName: req.body.scrumMasterName,
       startDate: req.body.startDate,
       methodology: req.body.methodology
@@ -144,7 +144,7 @@ app.post('/api/products', (req, res) => {
       productId: newPosition,
       productName: req.body.productName,
       productOwnerName: req.body.productOwnerName,
-      Developers: req.body.developers,
+      developers: req.body.developers,
       scrumMasterName: req.body.scrumMasterName,
       startDate: req.body.startDate,
       methodology: req.body.methodology

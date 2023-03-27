@@ -42,7 +42,7 @@ export default function ProductList(props) {
 
   if (products !== undefined) {
     return (
-      <div>
+      <div className="text-lg">
         <table>
           <tr>
             <th>Product Number</th>
@@ -59,10 +59,10 @@ export default function ProductList(props) {
               <td>{i.productName}</td>
               <td>{i.scrumMasterName}</td>
               <td>{i.productOwnerName}</td>
-              <td>{i.developers}</td>
+              <td><div>{i.developers && i.developers.map((i) => <div>{`${i}`}</div>)}</div></td>
               <td>{i.startDate}</td>
               <td>{i.methodology}</td>
-             
+
             </tr>)}
         </table>
       </div>
