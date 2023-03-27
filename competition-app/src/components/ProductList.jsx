@@ -80,7 +80,7 @@ export default function ProductList(props) {
           </thead>
           <tbody className="h-96 overflow-y-auto">
             {Object.values(products).map((i) =>
-              <Product handleOpen={handleOpen} handleClose={handleClose} setModalData={setModalData} key={i.productId} product={i} />)}
+              <Product handleOpen={handleOpen} handleClose={handleClose} setModalData={setModalData} key={`product-${i.productId}`} product={i} />)}
           </tbody>
         </table>
         <ProductModal modalData={modalData} open={open} handleClose={handleClose} handleOpen={handleOpen}/>    

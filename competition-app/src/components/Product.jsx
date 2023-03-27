@@ -17,11 +17,11 @@ export default function Product(props) {
       <td className={`p-5 border border-slate-700`}>{product.productName}</td>
       <td className={`p-5 border border-slate-700`}>{product.scrumMasterName}</td>
       <td className={`p-5 border border-slate-700`}>{product.productOwnerName}</td>
-      <td className={`p-5 border border-slate-700`}><div>{product.developers && product.developers.map((i) => <div>{`${i}`}</div>)}</div></td>
+      <td className={`p-5 border border-slate-700`}><div>{product.developers && product.developers.map((i,index) => <div key={`product-${product.productId}-array-${index}`}>{`${i}`}</div>)}</div></td>
       <td className={`p-5 border border-slate-700`}>{product.startDate}</td>
       <td className={`p-5 border border-slate-700`}>{product.methodology}</td>
       <td className="!bg-white">
-        <Button 
+        <Button key={`edit-product-${product.productId}`}
         onClick={() => 
           {
             props.setModalData(
