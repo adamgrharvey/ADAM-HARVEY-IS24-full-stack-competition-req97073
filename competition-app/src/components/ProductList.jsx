@@ -1,11 +1,37 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Product from "./Product";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 800,
+  height: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 export default function ProductList(props) {
 
   const backendURL = 'http://localhost:3000'
 
   const [products, setProducts] = useState();
+
+  // State for the product creation and edit modal.
+  const [modalData, setModalData] = useState({});
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  
 
   const getApi = function () {
     axios
@@ -57,9 +83,24 @@ export default function ProductList(props) {
           </thead>
           <tbody className="h-96 overflow-y-auto">
             {Object.values(products).map((i) =>
-              <Product key={i.productId} product={i} />)}
+              <Product handleOpen={handleOpen} handleClose={handleClose} setModalData={setModalData} key={i.productId} product={i} />)}
           </tbody>
         </table>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={modalStyle}>
+            <Typography variant="h6" component="h2">
+              {modalData.id}
+            </Typography>
+            <Typography sx={{ mt: 2 }}>
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </Typography>
+          </Box>
+        </Modal>
       </div >
     )
   }
