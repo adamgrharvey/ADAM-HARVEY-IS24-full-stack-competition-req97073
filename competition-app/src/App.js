@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { Button } from '@mui/material';
 import axios from 'axios';
 import ProductList from './components/ProductList';
 const backendURL = 'http://localhost:3000'
@@ -97,15 +98,17 @@ const edit = function () {
 function App() {
   return (
     <div className="App">
-      <button
+      <div>
+        <Button
         onClick={getApi}
-      >Get</button>
-      <button
-        onClick={createFakeData}
-      >Create</button>
-      <button
-        onClick={edit}
-      >Edit</button>
+      >Get</Button>
+        <Button  className='mt-5'
+          onClick={createFakeData}
+        >Create</Button>
+        <Button
+          onClick={edit}
+        >Edit</Button></div>
+
       <ProductList />
 
     </div>
