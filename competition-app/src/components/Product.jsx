@@ -2,20 +2,13 @@ import { useState, useEffect } from "react"
 import { Button, Modal } from "@mui/material";
 export default function Product(props) {
 
-  // Where individual product data will be kept for each component instance.
-  const [product, setProduct] = useState(props.product);
-
-
-  // Sorts Developers alphabetically when component loads.
-
-
   return (
-    <tr>
+    <tr className={`whitespace-nowrap`}>
       <td className={`p-5 border border-slate-700`}>{props.product.productId}</td>
       <td className={`p-5 border border-slate-700`}>{props.product.productName}</td>
       <td className={`p-5 border border-slate-700`}>{props.product.scrumMasterName}</td>
       <td className={`p-5 border border-slate-700`}>{props.product.productOwnerName}</td>
-      <td className={`p-5 border border-slate-700`}><div>{props.product.developers && props.product.developers.map((i,index) => <div key={`product-${props.product.productId}-array-${index}`}>{`${i}`}</div>)}</div></td>
+      <td className={`p-6 border border-slate-700`}><div>{props.product.developers && props.product.developers.map((i,index) => <div key={`product-${props.product.productId}-array-${index}`}>{`${i}`}</div>)}</div></td>
       <td className={`p-5 border border-slate-700`}>{props.product.startDate}</td>
       <td className={`p-5 border border-slate-700`}>{props.product.methodology}</td>
       <td className="!bg-white">

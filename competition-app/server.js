@@ -31,6 +31,48 @@ app.get('/api', (req, res) => {
   res.send(products);
 })
 
+// SEARCH
+// By Developer
+
+app.get('/api/search/developer/:developerName', (req, res) => {
+  // Reset our subset each query.
+  let productsSubset = {};
+  // Grab all our Products in a way we can easily iterate through
+  let values = Object.values(products);
+  // Go through each Product object
+  for (const value of values) {
+    // Go through our array of Developers
+    for (const dev of value.developers) {
+      // Check if the search name exists in the array. Convert all values to lower case for comparison.
+      if (dev.toLocaleLowerCase().includes(req.params.developerName.toLocaleLowerCase())) {
+        // If the name exists in the list of devs, add the entire key to our subset list of products.
+        productsSubset[value.productId] = value;
+      }
+    }
+  }
+  res.send(productsSubset);
+})
+
+// By Scrum Master
+app.get('/api/search/scrummaster/:scrumMasterName', (req, res) => {
+  // Reset our subset each query.
+  let productsSubset = {};
+  // Grab all our Products in a way we can easily iterate through
+  let values = Object.values(products);
+  // Go through each Product object
+  for (const value of values) {
+    // Compare the scrum master in the product to the search term. Compare only in lower case.
+    if (value.scrumMasterName.toLocaleLowerCase().includes(req.params.scrumMasterName.toLocaleLowerCase())) {
+      // if we have a match, add the product to our subset.
+      productsSubset[value.productId] = value;
+    }
+  }
+  // respond with the data (automatic 200 OK)
+  res.send(productsSubset);
+})
+
+
+// Specific product request, done by productId.
 app.get('/api/products/:id', (req, res) => {
   console.log(req.body);
 
@@ -46,7 +88,7 @@ app.get('/api/products/:id', (req, res) => {
 
 // Health Check. Responds with 200 OK.
 app.get('/api/health', (req, res) => {
-  res.send(200);
+  res.sendStatus(200);
 })
 
 /*
@@ -74,7 +116,7 @@ app.put('/api/products/:id', (req, res) => {
   // Issues with Product Name
   if (req.body.productName === null || req.body.productName === undefined || req.body.productName.trim() === "") {
     res.status(417).send(`Product Name cannot be empty.`);
-        // Issue with Scrum master
+    // Issue with Scrum master
   } else if (req.body.scrumMasterName === null || req.body.scrumMasterName === undefined || req.body.scrumMasterName.trim() === "") {
     res.status(417).send(`Scrum Master cannot be empty.`);
     // Issue with Product Owner
@@ -133,15 +175,15 @@ app.post('/api/products', (req, res) => {
   // Issues with Product Name
   if (req.body.productName === null || req.body.productName === undefined || req.body.productName.trim() === "") {
     res.status(417).send(`Product Name cannot be empty.`);
-    // Issue with Product Owner
-  } else if (req.body.productOwnerName === null || req.body.productOwnerName === undefined || req.body.productOwnerName.trim() === "") {
-    res.status(417).send(`Product Owner cannot be empty.`);
-    // Issue with Developers array
-  } else if (req.body.developers.length === 0) {
-    res.status(417).send(`Developers cannot be empty.`);
     // Issue with Scrum master
   } else if (req.body.scrumMasterName === null || req.body.scrumMasterName === undefined || req.body.scrumMasterName.trim() === "") {
     res.status(417).send(`Scrum Master cannot be empty.`);
+    // Issue with Product Owner
+  } else if (req.body.productOwnerName === null || req.body.productOwnerName === undefined || req.body.productOwnerName.trim() === "") {
+    res.status(417).send(`Product Owner cannot be empty.`);
+    // Issue with Developers array being too short or too long
+  } else if (req.body.developers.length === 0 || req.body.developers.length > 5) {
+    res.status(417).send(`Must assign between 1-5 developers.`);
     // Issue with Start Date
   } else if (req.body.startDate === null || req.body.startDate === undefined || req.body.startDate.trim() === "") {
     res.status(417).send(`Start Date cannot be empty.`);

@@ -60,7 +60,8 @@ function generateProducts() {
 // Used above function to produce an Object of products. I want to use a consistent list so that issues can be more easily noticed and fixed. We will use the below object for the data.
 
 const returnPremadeProducts = function () {
-  return ({
+
+  let outObj = {
     1: {
       productId: 1,
       productName: "NovaForge",
@@ -657,7 +658,17 @@ const returnPremadeProducts = function () {
       startDate: "2020-03-26",
       methodology: "Agile"
     }
-  });
+  };
+
+  // Sorts the Seed data.
+  let values = Object.values(outObj);
+  let keys = Object.keys(outObj);
+
+  for (const key of keys) {
+    outObj[key].developers.sort();
+  }
+
+  return (outObj);
 
 
 }
