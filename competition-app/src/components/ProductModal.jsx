@@ -5,12 +5,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import { useEffect, useState } from "react";
-import axios from "axios";
 import sendAddProductRequest from "../API/sendAddProductRequest";
 import sendEditProductRequest from "../API/sendEditProductRequest";
 
-const backendURL = 'http://localhost:3000'
-
+// Styling for the modal.
 const modalStyle = {
   position: 'absolute',
   top: '50%',
@@ -26,51 +24,50 @@ const modalStyle = {
 
 const methodologies = ['Agile', 'Waterfall'];
 
-
-
+// Using Material UIs Modal popup to serve as a Form for adding/editing products.
 export default function ProductModal(props) {
 
+  // 'product' will be shorthand for the state of the currently selected Product to be populated into the modal.
   const product = props.modalData;
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+    // clear the error message when the modal data is updated i.e. when a new Edit button is clicked.
+    useEffect(() => {
+      setError("");
+    }, [props.modalData])
+
+  // For simplicity, I split up the 'handleChange' functions into separate ones depending on the type of data they expect to see.
+  // Used for Product name, scrum master, and product owner fields.
   const handleChange = (event, child) => {
-    // encode URIs for special characters
+
     if (event.target.id === "product-name-input") {
-      props.setModalData((prev) => ({ ...prev, productName: encodeURI(event.target.value) }))
+      props.setModalData((prev) => ({ ...prev, productName: event.target.value }))
     } else if (event.target.id === "scrum-master-input") {
-      props.setModalData((prev) => ({ ...prev, scrumMasterName: encodeURI(event.target.value) }))
+      props.setModalData((prev) => ({ ...prev, scrumMasterName: event.target.value }))
     } else if (event.target.id === "product-owner-input") {
-      props.setModalData((prev) => ({ ...prev, productOwnerName: encodeURI(event.target.value) }))
+      props.setModalData((prev) => ({ ...prev, productOwnerName: event.target.value }))
     }
-
-    console.log(event);
-    //console.log(child);
-
-    //setProduct(e.target.value)
   }
-
-  useEffect(() => {
-    setError("");
-  }, [props.modalData])
-
+  // Used for the Developers multi-select form.
   const handleDevelopersChange = (event, child) => {
-
     if (child.length <= 5) {
       props.setModalData((prev) => ({ ...prev, developers: child }))
     }
   }
-
+  // Used for the Methodology select box.
   const handleMethodChange = (event, child) => {
     // encode URIs for special characters
     props.setModalData((prev) => ({ ...prev, methodology: child.props.value }))
   }
 
+  // Used for the date select box.
   const handleDateChange = (event, child) => {
     // encode URIs for special characters
     props.setModalData((prev) => ({ ...prev, startDate: `${event.$y}-${event.$M + 1}-${event.$D}` }))
   }
 
+  // Logic to decide what to do when the save button is pressed.
   const handleSave = function () {
     // start Loading spinner
     setLoading(true);
@@ -208,6 +205,7 @@ export default function ProductModal(props) {
               ))}
             </TextField>
             <Button color="error" variant="contained" className="!mt-20 !ml-20 !mr-2"
+            // when Cancel is clicked, simply close the modal.
               onClick={props.handleClose}
             >Cancel
             </Button>

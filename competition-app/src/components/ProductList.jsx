@@ -5,7 +5,9 @@ import * as React from 'react';
 import ProductModal from "./ProductModal";
 import SearchBar from "./SearchBar";
 import AddProduct from "./AddProduct";
+import getAllProducts from "../API/getAllProducts";
 
+// Main component for app, the table of products.
 export default function ProductList(props) {
 
   const backendURL = 'http://localhost:3000'
@@ -15,6 +17,7 @@ export default function ProductList(props) {
   // State for the product creation and edit modal.
   const [modalData, setModalData] = useState({});
   const [serverMessage, setServerMessage] = useState("");
+  const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [refreshData, setRefreshData] = useState(true);
   const handleOpen = () => setOpen(true);
@@ -25,55 +28,28 @@ export default function ProductList(props) {
   const [search, setSearch] = useState("");
   const [count, setCount] = useState();
 
-
-  const getApi = function (searchType, search) {
-    // If we there are characters in the search bar, use the search portion of the API when refreshing data.
-    if (search.length >= 1) {
-      axios
-        // cleanup the request URL, downcase and encode.
-        .get(`${backendURL}/api/search/${searchType.toLowerCase().replace(/\s/g, '')}/${encodeURI(search.toLowerCase())}`, {
-          headers: {
-            'content-type': 'application/json',
-          },
-        })
-        .then((res) => {
-          // if server returns 200 (success)
-          if (res.status === 200) {
-            setProducts({ ...res.data })
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-
-    } else {
-      // If not searching, get all the products.
-
-      axios
-        .get(`${backendURL}/api`, {
-          headers: {
-            'content-type': 'application/json',
-          },
-        })
-        .then((res) => {
-          // if server returns 200 (success)
-          if (res.status === 200) {
-            // Set our table to show everything.
-            setProducts({ ...res.data })
-          }
-        })
-        // 
-        .catch((err) => {
-          setServerMessage(err.message);
-          console.log(err);
-        });
-    }
-  }
-
+  // Update our front page when 'refreshData' state sets to true.
   useEffect(() => {
     if (refreshData === true) {
+      // dont need to update again after this.
       setRefreshData(false);
-      getApi(searchType, search);
+      // Request all products from API.
+      getAllProducts(searchType, search).then((results) => {
+        // set our products state to the results and stop loading.
+        setProducts(results);
+        setLoading(false);
+      }).catch((error) => {
+        // if we get an error we aren't loading anymore.
+        setLoading(false);
+        // if we have a server error, show that on the front page.
+        if (error.response) {
+          // set Modal error to show what the server said was wrong.
+          setServerMessage(error.response.data);
+        } else {
+          // incase the server is not responding, show generic browser error. "Network Error"
+          setServerMessage(error.message);
+        }
+      })
     }
   }, [refreshData])
 
@@ -84,9 +60,9 @@ export default function ProductList(props) {
   }, [products])
 
   // Remove the server message after its shown for 7 seconds.
-
   useEffect(() => {
-    if (serverMessage !== "") {
+    // If the server message is "Network Error", the API is not working properly. Don't dismiss this error.
+    if (serverMessage !== "" && (serverMessage !== "Network Error")) {
       setTimeout(() => {
         setServerMessage("");
       }, 7000)
@@ -131,6 +107,13 @@ export default function ProductList(props) {
         <p>{count === 0 ? "No Results found." : ""}</p>
       </div >
 
+    )
+  } else {
+    // otherise, the API must not be working, display Error message.
+    return (
+      <div>
+        <p>{serverMessage ? `Server message: ${serverMessage}` : ""}</p>
+      </div>
     )
   }
 

@@ -3,9 +3,13 @@ const backendURL = 'http://localhost:3000'
 
 export default function sendAddProductRequest(product) {
 
+  // deep copy
   let reqData = { ...product };
 
   // encode URIs for special characters
+  reqData.productName = encodeURI(reqData.productName);
+  reqData.scrumMasterName = encodeURI(reqData.scrumMasterName);
+  reqData.productOwnerName = encodeURI(reqData.productOwnerName);
   for (let i = 0; i < reqData.developers.length; i++) {
 
     reqData.developers[i] = encodeURI(reqData.developers[i]);

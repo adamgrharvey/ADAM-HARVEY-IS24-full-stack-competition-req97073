@@ -19,7 +19,7 @@ export default function AddProduct(props) {
             startDate: "",
             methodology: ""
           });
-          // once we have set our Modal data, open it up.
+          // once we have emptied our Modal data, open it up.
           props.handleOpen();
         }}
       >
