@@ -71,30 +71,84 @@ export default function ProductModal(props) {
 
   const handleSave = function () {
     setLoading(true);
-    sendEditRequest().then((results) => {
-      console.log(results);
-      props.setRefreshData(true);
-      setLoading(false);
-      props.handleClose();
-    }).catch((error) => {
-      setLoading(false);
-      if (error.response) {
-        setError(error.response.data);
-      } else {
-        setError(error.message);
-      }
+    if (product.productId === 0) {
+      sendAddRequest().then((results) => {
+        console.log(results);
+        props.setRefreshData(true);
+        setLoading(false);
+        props.setServerMessage(results.data);
+        props.handleClose();
+      }).catch((error) => {
+        setLoading(false);
+        if (error.response) {
+          setError(error.response.data);
+        } else {
+          setError(error.message);
+        }
 
+      })
+    } else {
+      sendEditRequest().then((results) => {
+        console.log(results);
+        props.setRefreshData(true);
+        setLoading(false);
+        props.setServerMessage(results.data);
+        props.handleClose();
+      }).catch((error) => {
+        setLoading(false);
+        if (error.response) {
+          setError(error.response.data);
+        } else {
+          setError(error.message);
+        }
+
+      })
+    }
+
+  }
+
+  const sendAddRequest = function () {
+
+    let reqData = { ...product };
+
+    // encode URIs for special characters
+    for (let i = 0; i < reqData.developers.length; i++) {
+
+      reqData.developers[i] = encodeURI(reqData.developers[i]);
+      console.log(reqData.developers);
+    }
+
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${backendURL}/api/products/`, product, {
+          headers: {
+            'content-type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+          },
+        })
+        .then((res) => {
+          // if server returns 201 (success)
+          if (res.status === 201) {
+            console.log(res);
+            resolve(res);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
     })
   }
 
   const sendEditRequest = function () {
 
-    let reqData = {...product};
+    let reqData = { ...product };
 
 
     // encode URIs for special characters
     for (let i = 0; i < reqData.developers.length; i++) {
-      
+
       reqData.developers[i] = encodeURI(reqData.developers[i]);
       console.log(reqData.developers);
     }
@@ -134,7 +188,7 @@ export default function ProductModal(props) {
         >
           <Box sx={modalStyle}>
             <Typography className="!mb-2" variant="h5" component="h2">
-              {`Edit Product ${product.productId}`}
+              {product.productId === 0 ? `Add New Product` : `Edit Product ${product.productId}`}
             </Typography>
             <TextField
               id="product-name-input"
