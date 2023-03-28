@@ -107,7 +107,7 @@ app.get('/api/health', (req, res) => {
 */
 
 // Edit information on an existing product.
-app.put('/api/products/:id', (req, res) => {
+app.put('/api/products/:productId', (req, res) => {
 
   // decodeURIs for special characters. Ensures consistency.
 
@@ -121,7 +121,7 @@ app.put('/api/products/:id', (req, res) => {
   }
 
   // Check if Product ID exists
-  if (!Object.keys(products).includes(req.params.id)) {
+  if (!Object.keys(products).includes(req.params.productId)) {
     res.status(404).send(`Product ID not found.`);
   }
 
@@ -168,7 +168,7 @@ app.put('/api/products/:id', (req, res) => {
     console.log(`Product ${req.params.id} edited!`);
     console.log(products[req.params.id]);
     // Send 'Created' status to client.
-    res.status(201).send(`Product edit successful.`);
+    res.status(202).send(`Product edit successful.`);
   }
 })
 

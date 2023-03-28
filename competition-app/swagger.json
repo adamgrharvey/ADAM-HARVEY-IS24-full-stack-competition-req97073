@@ -16,47 +16,26 @@
         "description": "Definitely not quotients."
       },
       {
-        "name": "search",
-        "description": "Show me potato salad!"
-      },
-      {
         "name": "health",
         "description": "A Health Check a day keeps . . . . error"
       }
     ],
     "paths": {
-      "/api/products": {
+      "/api/products/{productId}": {
         "put": {
           "tags": [
             "products"
           ],
           "summary": "Update an existing product",
-          "description": "Update an existing products by Id",
+          "description": "Updates an existing products by productId",
           "operationId": "updateproducts",
           "requestBody": {
             "description": "Update an existing product in the list",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/products"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/products"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/products"
-                }
-              }
-            },
             "required": true
           },
           "responses": {
-            "200": {
-              "description": "Successful operation",
+            "202": {
+              "description": "Accepted: Submission meets expectations.",
               "content": {
                 "application/json": {
                   "schema": {
@@ -74,67 +53,10 @@
               "description": "Invalid ID supplied"
             },
             "404": {
-              "description": "products not found"
+              "description": "Product not found"
             },
-            "405": {
-              "description": "Validation exception"
-            }
-          },
-          "security": [
-            {
-              "productsstore_auth": [
-                "write:productss",
-                "read:productss"
-              ]
-            }
-          ]
-        },
-        "post": {
-          "tags": [
-            "products"
-          ],
-          "summary": "Add a new products to the store",
-          "description": "Add a new products to the store",
-          "operationId": "addproducts",
-          "requestBody": {
-            "description": "Create a new products in the store",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/products"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/products"
-                }
-              },
-              "application/x-www-form-urlencoded": {
-                "schema": {
-                  "$ref": "#/components/schemas/products"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "Successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/products"
-                  }
-                },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/products"
-                  }
-                }
-              }
-            },
-            "405": {
-              "description": "Invalid input"
+            "417": {
+              "description": "Expectation Failed: Data receieved outside expected values."
             }
           },
           "security": [

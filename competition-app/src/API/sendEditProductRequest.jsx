@@ -24,8 +24,8 @@ export default function sendEditProductRequest(product) {
         },
       })
       .then((res) => {
-        // if server returns 201 (success)
-        if (res.status === 201) {
+        // if server returns 202 (success)
+        if (res.status === 202) {
           resolve(res);
         }
       })
