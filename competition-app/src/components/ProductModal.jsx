@@ -6,6 +6,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import sendAddProductRequest from "../API/sendAddProductRequest";
+import sendEditProductRequest from "../API/sendEditProductRequest";
 
 const backendURL = 'http://localhost:3000'
 
@@ -70,112 +72,59 @@ export default function ProductModal(props) {
   }
 
   const handleSave = function () {
+    // start Loading spinner
     setLoading(true);
+    // If/Else to decide whether we are sending a POST or PUT request to Add or Edit product.
+    // If product.productId === 0, we are adding a new product.
     if (product.productId === 0) {
-      sendAddRequest().then((results) => {
-        console.log(results);
+      sendAddProductRequest(product).then((results) => {
+        // change all our states depending on the result.
+        // refresh our home page.
         props.setRefreshData(true);
+        // tell the Load button to stop spinning
         setLoading(false);
+        // Show responsive message at top of screen depending on what was done.
         props.setServerMessage(results.data);
+        // close the modal
         props.handleClose();
       }).catch((error) => {
+        // If we get an error, stop loading
         setLoading(false);
         if (error.response) {
+          // set Modal error to show what the server said was wrong.
           setError(error.response.data);
         } else {
+          // incase the server is not responding, show generic browser error. "Network Error"
           setError(error.message);
         }
 
       })
+      /* If product.productId !== 0, we must be editing an existing one*/
     } else {
-      sendEditRequest().then((results) => {
-        console.log(results);
+      sendEditProductRequest(product).then((results) => {
+        // change all our states depending on the result.
+        // refresh our home page.
         props.setRefreshData(true);
+        // tell the Load button to stop spinning
         setLoading(false);
+        // Show responsive message at top of screen depending on what was done.
         props.setServerMessage(results.data);
+        // close the modal
         props.handleClose();
       }).catch((error) => {
+        // If we get an error, stop loading
         setLoading(false);
         if (error.response) {
+          // set Modal error to show what the server said was wrong.
           setError(error.response.data);
         } else {
+          // incase the server is not responding, show generic browser error. "Network Error"
           setError(error.message);
         }
 
       })
     }
-
   }
-
-  const sendAddRequest = function () {
-
-    let reqData = { ...product };
-
-    // encode URIs for special characters
-    for (let i = 0; i < reqData.developers.length; i++) {
-
-      reqData.developers[i] = encodeURI(reqData.developers[i]);
-      console.log(reqData.developers);
-    }
-
-    return new Promise((resolve, reject) => {
-      axios
-        .post(`${backendURL}/api/products/`, product, {
-          headers: {
-            'content-type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-          },
-        })
-        .then((res) => {
-          // if server returns 201 (success)
-          if (res.status === 201) {
-            console.log(res);
-            resolve(res);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          reject(err);
-        });
-    })
-  }
-
-  const sendEditRequest = function () {
-
-    let reqData = { ...product };
-
-
-    // encode URIs for special characters
-    for (let i = 0; i < reqData.developers.length; i++) {
-
-      reqData.developers[i] = encodeURI(reqData.developers[i]);
-      console.log(reqData.developers);
-    }
-
-    return new Promise((resolve, reject) => {
-      axios
-        .put(`${backendURL}/api/products/${product.productId}`, product, {
-          headers: {
-            'content-type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-          },
-        })
-        .then((res) => {
-          // if server returns 201 (success)
-          if (res.status === 201) {
-            console.log(res);
-            resolve(res);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          reject(err);
-        });
-    })
-  }
-
 
   if (product) {
     return (

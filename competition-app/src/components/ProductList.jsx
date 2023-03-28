@@ -83,11 +83,14 @@ export default function ProductList(props) {
     }
   }, [products])
 
-  useEffect(() => {
-    setTimeout(() => {
-      setServerMessage("");
-    }, 7000)
+  // Remove the server message after its shown for 7 seconds.
 
+  useEffect(() => {
+    if (serverMessage !== "") {
+      setTimeout(() => {
+        setServerMessage("");
+      }, 7000)
+    }
   }, [serverMessage])
 
 
@@ -96,12 +99,12 @@ export default function ProductList(props) {
   if (products !== undefined) {
     return (
       <div>
-        <p>{serverMessage ? `Server Message: ${serverMessage}` : ""}</p>
+        <p>{serverMessage ? `Server message: ${serverMessage}` : ""}</p>
         <div className="flex justify-evenly">
-        <AddProduct setRefreshData={setRefreshData} modalData={modalData} setModalData={setModalData} open={open} handleClose={handleClose} handleOpen={handleOpen}/>
-        <SearchBar setRefreshData={setRefreshData} search={search} setSearch={setSearch} setSearchType={setSearchType} />
+          <AddProduct setRefreshData={setRefreshData} modalData={modalData} setModalData={setModalData} open={open} handleClose={handleClose} handleOpen={handleOpen} />
+          <SearchBar setRefreshData={setRefreshData} search={search} setSearch={setSearch} setSearchType={setSearchType} />
         </div>
-        
+
         <div className="flex justify-center text-lg mt-5 font-sans font-medium table-wrp block max-h-96">
           <table className="sticky top-0 border-collapse border-spacing-auto border-slate-500 border-b">
             <thead>
@@ -122,7 +125,7 @@ export default function ProductList(props) {
                 <Product searchType={searchType} search={search} handleOpen={handleOpen} handleClose={handleClose} setModalData={setModalData} key={`product-${i.productId}`} product={i} />)}
             </tbody>
           </table>
-          
+
           <ProductModal setServerMessage={setServerMessage} setRefreshData={setRefreshData} setProducts={setProducts} modalData={modalData} setModalData={setModalData} open={open} handleClose={handleClose} handleOpen={handleOpen} />
         </div >
         <p>{count === 0 ? "No Results found." : ""}</p>
