@@ -7,10 +7,8 @@ import SearchBar from "./SearchBar";
 import AddProduct from "./AddProduct";
 import getAllProducts from "../API/getAllProducts";
 
-// Main component for app, the table of products.
+// Main component for app, the table of products. We will also use this for various states as they cannot be used at top-level.
 export default function ProductList(props) {
-
-  const backendURL = 'http://localhost:3000'
 
   const [products, setProducts] = useState();
 
@@ -70,6 +68,13 @@ export default function ProductList(props) {
   }, [serverMessage])
 
 
+  if (loading) {
+    return (
+      <div>
+        <p>Loading...</p>
+      </div>
+    )
+  }
 
   // If we have the API data (not undefined) return the table.
   if (products !== undefined) {

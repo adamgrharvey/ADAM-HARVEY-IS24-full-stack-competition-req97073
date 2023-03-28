@@ -28,7 +28,7 @@ function generateProducts() {
   ];
   const products = {};
   let productId = 1;
-  for (let i = 1; i < 44; i++) {
+  for (let i = 1; i < 41; i++) {
     const productName = productNames[i - 1];
     const developersCopy = [...developers];
     const developersCount = Math.floor(Math.random() * 5);
@@ -610,51 +610,6 @@ const returnPremadeProducts = function () {
         "Logan Taylor"
       ],
       scrumMasterName: "Julie Robinson",
-      startDate: "2020-03-26",
-      methodology: "Agile"
-    },
-    41: {
-      productId: 41,
-      productName: "BlazeFusion",
-      productOwnerName: "Trevor Smith",
-      developers: [
-        "Trevor Smith",
-        "Jessica Miller",
-        "Devin Harris",
-        "Kelsea Williams",
-        "Gino Brown"
-      ],
-      scrumMasterName: "Jason Chen",
-      startDate: "2022-03-26",
-      methodology: "Waterfall"
-    },
-    42: {
-      productId: 42,
-      productName: "AtomForge",
-      productOwnerName: "Kelsea Williams",
-      developers: [
-        "Kelsea Williams",
-        "Jared Thomas",
-        "Justin Wilson",
-        "Jessica Miller",
-        "Jenna Martin"
-      ],
-      scrumMasterName: "Jason Chen",
-      startDate: "2022-03-26",
-      methodology: "Agile"
-    },
-    43: {
-      productId: 43,
-      productName: "InfinityBurst",
-      productOwnerName: "Clay Jackson",
-      developers: [
-        "Clay Jackson",
-        "Justin Wilson",
-        "Sasha Lee",
-        "Shyla Davis",
-        "Trevor Smith"
-      ],
-      scrumMasterName: "Jennifer Garcia",
       startDate: "2020-03-26",
       methodology: "Agile"
     }

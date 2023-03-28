@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react"
-import { Button, Modal } from "@mui/material";
+import { Button } from "@mui/material";
+
+// Component which contains individual Product data. Will be an entry on the table.
 export default function Product(props) {
 
   return (
@@ -14,6 +15,7 @@ export default function Product(props) {
       <td className={`p-5 border border-slate-700`}>{props.product.methodology}</td>
       <td className="!bg-white">
         <Button key={`edit-product-${props.product.productId}`}
+        // When Edit button for this instance is clicked, load this components Product data into the Modal so it can be edited.
         onClick={() => 
           {
             props.setModalData(
@@ -27,6 +29,7 @@ export default function Product(props) {
                 methodology: props.product.methodology
               }
               );
+              // once state is set, open the modal.
             props.handleOpen();
             
           }}
