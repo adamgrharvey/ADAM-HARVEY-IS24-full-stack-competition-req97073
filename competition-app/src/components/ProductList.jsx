@@ -4,6 +4,8 @@ import Product from "./Product";
 import * as React from 'react';
 import ProductModal from "./ProductModal";
 
+
+
 const modalStyle = {
   position: 'absolute',
   top: '50%',
@@ -26,6 +28,7 @@ export default function ProductList(props) {
   // State for the product creation and edit modal.
   const [modalData, setModalData] = useState({});
   const [open, setOpen] = React.useState(false);
+  const [refreshData, setRefreshData] = useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   
@@ -40,7 +43,6 @@ export default function ProductList(props) {
       .then((res) => {
         // if server returns 200 (success)
         if (res.status === 200) {
-          console.log(res.data);
           setProducts({ ...res.data })
 
         }
@@ -51,15 +53,12 @@ export default function ProductList(props) {
   }
 
   useEffect(() => {
-    getApi();
-  }, [])
-
-  useEffect(() => {
-    if (products !== undefined) {
-      console.log(Object.values(products));
+    if (refreshData) {
+      setRefreshData(false);
+      getApi();
     }
+  }, [refreshData])
 
-  }, [products])
 
   // If we have the API data (not undefined) return the table.
   if (products !== undefined) {
@@ -83,7 +82,7 @@ export default function ProductList(props) {
               <Product handleOpen={handleOpen} handleClose={handleClose} setModalData={setModalData} key={`product-${i.productId}`} product={i} />)}
           </tbody>
         </table>
-        <ProductModal modalData={modalData} setModalData={setModalData} open={open} handleClose={handleClose} handleOpen={handleOpen}/>    
+        <ProductModal setRefreshData={setRefreshData} setProducts={setProducts} modalData={modalData} setModalData={setModalData} open={open} handleClose={handleClose} handleOpen={handleOpen}/>    
       </div >
     )
   }

@@ -74,15 +74,15 @@ app.put('/api/products/:id', (req, res) => {
   // Issues with Product Name
   if (req.body.productName === null || req.body.productName === undefined || req.body.productName.trim() === "") {
     res.status(417).send(`Product Name cannot be empty.`);
+        // Issue with Scrum master
+  } else if (req.body.scrumMasterName === null || req.body.scrumMasterName === undefined || req.body.scrumMasterName.trim() === "") {
+    res.status(417).send(`Scrum Master cannot be empty.`);
     // Issue with Product Owner
   } else if (req.body.productOwnerName === null || req.body.productOwnerName === undefined || req.body.productOwnerName.trim() === "") {
     res.status(417).send(`Product Owner cannot be empty.`);
-    // Issue with Developers array
-  } else if (req.body.developers.length === 0) {
-    res.status(417).send(`Developers cannot be empty.`);
-    // Issue with Scrum master
-  } else if (req.body.scrumMasterName === null || req.body.scrumMasterName === undefined || req.body.scrumMasterName.trim() === "") {
-    res.status(417).send(`Scrum Master cannot be empty.`);
+    // Issue with Developers array being too short or too long
+  } else if (req.body.developers.length === 0 || req.body.developers.length > 5) {
+    res.status(417).send(`Must assign between 1-5 developers.`);
     // Issue with Start Date
   } else if (req.body.startDate === null || req.body.startDate === undefined || req.body.startDate.trim() === "") {
     res.status(417).send(`Start Date cannot be empty.`);
