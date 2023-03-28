@@ -8,7 +8,12 @@ const helpers = require('./helpers');
 const cors = require('cors');
 app.use(cors());
 
-// Read JSON data from frontend.
+//Swagger UI
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// We will be using JSON data from frontend.
 app.use(express.json());
 // More CORS fixing, allow all the things.
 app.use(function (req, res, next) {
@@ -27,14 +32,14 @@ let products = helpers.returnPremadeProducts();
 */
 
 // READ all Products. Responds with object of Products.
-app.get('/api', (req, res) => {
+app.get('/api/products', (req, res) => {
   res.send(products);
 })
 
 // SEARCH
 // By Developer
 
-app.get('/api/search/developer/:developerName', (req, res) => {
+app.get('/api/products/search/developer/:developerName', (req, res) => {
   // Decode developer name
   let developerName = decodeURI(req.params.developerName);
 
@@ -57,7 +62,7 @@ app.get('/api/search/developer/:developerName', (req, res) => {
 })
 
 // By Scrum Master
-app.get('/api/search/scrummaster/:scrumMasterName', (req, res) => {
+app.get('/api/products/search/scrummaster/:scrumMasterName', (req, res) => {
   // Decode Scrum master name
   let scrumMasterName = decodeURI(req.params.scrumMasterName);
   // Reset our subset each query.

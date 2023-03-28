@@ -7,7 +7,7 @@ export default function getAllProducts(searchType, search) {
     return new Promise((resolve, reject) => {
       axios
         // cleanup the request URL, downcase and encode.
-        .get(`${backendURL}/api/search/${searchType.toLowerCase().replace(/\s/g, '')}/${encodeURI(search.toLowerCase())}`, {
+        .get(`${backendURL}/api/products/search/${searchType.toLowerCase().replace(/\s/g, '')}/${encodeURI(search.toLowerCase())}`, {
           headers: {
             'content-type': 'application/json',
           },
@@ -26,7 +26,7 @@ export default function getAllProducts(searchType, search) {
     // If not searching, get all the products.
     return new Promise((resolve, reject) => {
       axios
-        .get(`${backendURL}/api`, {
+        .get(`${backendURL}/api/products`, {
           headers: {
             'content-type': 'application/json',
           },
