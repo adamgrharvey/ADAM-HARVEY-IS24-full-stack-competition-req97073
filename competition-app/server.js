@@ -31,6 +31,19 @@ app.get('/api', (req, res) => {
   res.send(products);
 })
 
+app.get('/api/products/:id', (req, res) => {
+  console.log(req.body);
+
+  // Check if Product ID exists in our Products list.
+  if (!Object.keys(products).includes(req.params.id)) {
+    res.status(404).send(`Product ID not found.`);
+  }
+
+  // Send 'Product object' to client.
+  res.status(200).send(products[req.params.id]);
+
+})
+
 // Health Check. Responds with 200 OK.
 app.get('/api/health', (req, res) => {
   res.send(200);
@@ -48,7 +61,7 @@ app.put('/api/products/:id', (req, res) => {
 
   // Check if Product ID exists
   if (!Object.keys(products).includes(req.params.id)) {
-    res.status(400).send(`Product ID not found.`);
+    res.status(404).send(`Product ID not found.`);
   }
 
   if (!req.body) {
