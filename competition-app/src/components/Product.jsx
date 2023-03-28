@@ -4,6 +4,7 @@ export default function Product(props) {
 
   return (
     <tr className={`whitespace-nowrap`}>
+      <td className={`!bg-white p-5`}></td>
       <td className={`p-5 border border-slate-700`}>{props.product.productId}</td>
       <td className={`p-5 border border-slate-700`}>{props.product.productName}</td>
       <td className={`p-5 border border-slate-700`}>{props.product.scrumMasterName}</td>

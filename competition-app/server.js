@@ -6,6 +6,8 @@ const port = 3000;
 const helpers = require('./helpers');
 // Fixes issues with CORS between Front-end and Backend.
 const cors = require('cors');
+// For input sanitizing
+const { check, validationResult } = require('express-validator');
 app.use(cors());
 
 // Read JSON data from frontend.
@@ -61,8 +63,8 @@ app.get('/api/search/scrummaster/:scrumMasterName', (req, res) => {
   let values = Object.values(products);
   // Go through each Product object
   for (const value of values) {
-    // Compare the scrum master in the product to the search term. Compare only in lower case.
-    if (value.scrumMasterName.toLocaleLowerCase().includes(req.params.scrumMasterName.toLocaleLowerCase())) {
+    // Compare the scrum master in the product to the search term. Compare only in lower case. Sanitize.
+    if (value.scrumMasterName.toLocaleLowerCase().includes(req.params.scrumMasterName.escape().toLocaleLowerCase())) {
       // if we have a match, add the product to our subset.
       productsSubset[value.productId] = value;
     }
@@ -77,12 +79,12 @@ app.get('/api/products/:id', (req, res) => {
   console.log(req.body);
 
   // Check if Product ID exists in our Products list.
-  if (!Object.keys(products).includes(req.params.id)) {
+  if (!Object.keys(products).includes(req.params.id.escape())) {
     res.status(404).send(`Product ID not found.`);
   }
 
   // Send 'Product object' to client.
-  res.status(200).send(products[req.params.id]);
+  res.status(200).send(products[req.params.id.escape()]);
 
 })
 
@@ -102,7 +104,7 @@ app.put('/api/products/:id', (req, res) => {
   console.log(req.body);
 
   // Check if Product ID exists
-  if (!Object.keys(products).includes(req.params.id)) {
+  if (!Object.keys(products).includes(req.params.id.escape())) {
     res.status(404).send(`Product ID not found.`);
   }
 
@@ -114,22 +116,22 @@ app.put('/api/products/:id', (req, res) => {
 
   // Check the request data for any issues, send error status if there are issues.
   // Issues with Product Name
-  if (req.body.productName === null || req.body.productName === undefined || req.body.productName.trim() === "") {
+  if (req.body.productName.escape() === null || req.body.productName.escape() === undefined || req.body.productName.escape().trim() === "") {
     res.status(417).send(`Product Name cannot be empty.`);
     // Issue with Scrum master
-  } else if (req.body.scrumMasterName === null || req.body.scrumMasterName === undefined || req.body.scrumMasterName.trim() === "") {
+  } else if (req.body.scrumMasterName.escape() === null || req.body.scrumMasterName.escape() === undefined || req.body.scrumMasterName.escape().trim() === "") {
     res.status(417).send(`Scrum Master cannot be empty.`);
     // Issue with Product Owner
-  } else if (req.body.productOwnerName === null || req.body.productOwnerName === undefined || req.body.productOwnerName.trim() === "") {
+  } else if (req.body.productOwnerName.escape() === null || req.body.productOwnerName.escape() === undefined || req.body.productOwnerName.escape().trim() === "") {
     res.status(417).send(`Product Owner cannot be empty.`);
     // Issue with Developers array being too short or too long
   } else if (req.body.developers.length === 0 || req.body.developers.length > 5) {
     res.status(417).send(`Must assign between 1-5 developers.`);
     // Issue with Start Date
-  } else if (req.body.startDate === null || req.body.startDate === undefined || req.body.startDate.trim() === "") {
+  } else if (req.body.startDate.escape() === null || req.body.startDate.escape() === undefined || req.body.startDate.escape().trim() === "") {
     res.status(417).send(`Start Date cannot be empty.`);
     // Checks if REQ methodology is in the array of allowed options.
-  } else if (!viableMethodologies.includes(req.body.methodology)) {
+  } else if (!viableMethodologies.includes(req.body.methodology.escape())) {
     res.status(417).send(`You must select a Methodology.`);
   }
 
@@ -172,37 +174,37 @@ app.post('/api/products', (req, res) => {
   let viableMethodologies = ['Waterfall', 'Agile'];
 
   // Check the request data for any issues, send error status if there are issues.
-  // Issues with Product Name
-  if (req.body.productName === null || req.body.productName === undefined || req.body.productName.trim() === "") {
-    res.status(417).send(`Product Name cannot be empty.`);
-    // Issue with Scrum master
-  } else if (req.body.scrumMasterName === null || req.body.scrumMasterName === undefined || req.body.scrumMasterName.trim() === "") {
-    res.status(417).send(`Scrum Master cannot be empty.`);
-    // Issue with Product Owner
-  } else if (req.body.productOwnerName === null || req.body.productOwnerName === undefined || req.body.productOwnerName.trim() === "") {
-    res.status(417).send(`Product Owner cannot be empty.`);
-    // Issue with Developers array being too short or too long
-  } else if (req.body.developers.length === 0 || req.body.developers.length > 5) {
-    res.status(417).send(`Must assign between 1-5 developers.`);
-    // Issue with Start Date
-  } else if (req.body.startDate === null || req.body.startDate === undefined || req.body.startDate.trim() === "") {
-    res.status(417).send(`Start Date cannot be empty.`);
-    // Checks if REQ methodology is in the array of allowed options.
-  } else if (!viableMethodologies.includes(req.body.methodology)) {
-    res.status(417).send(`You must select a Methodology.`);
-  }
+    // Issues with Product Name
+    if (req.body.productName.escape() === null || req.body.productName.escape() === undefined || req.body.productName.escape().trim() === "") {
+      res.status(417).send(`Product Name cannot be empty.`);
+      // Issue with Scrum master
+    } else if (req.body.scrumMasterName.escape() === null || req.body.scrumMasterName.escape() === undefined || req.body.scrumMasterName.escape().trim() === "") {
+      res.status(417).send(`Scrum Master cannot be empty.`);
+      // Issue with Product Owner
+    } else if (req.body.productOwnerName.escape() === null || req.body.productOwnerName.escape() === undefined || req.body.productOwnerName.escape().trim() === "") {
+      res.status(417).send(`Product Owner cannot be empty.`);
+      // Issue with Developers array being too short or too long
+    } else if (req.body.developers.length === 0 || req.body.developers.length > 5) {
+      res.status(417).send(`Must assign between 1-5 developers.`);
+      // Issue with Start Date
+    } else if (req.body.startDate.escape() === null || req.body.startDate.escape() === undefined || req.body.startDate.escape().trim() === "") {
+      res.status(417).send(`Start Date cannot be empty.`);
+      // Checks if REQ methodology is in the array of allowed options.
+    } else if (!viableMethodologies.includes(req.body.methodology.escape())) {
+      res.status(417).send(`You must select a Methodology.`);
+    }
 
   // If all checks pass, we can create the new Product.
   else {
     // Then we need to insert the new Product into our object, using the request data.
     products[newPosition] = {
       productId: newPosition,
-      productName: req.body.productName,
-      productOwnerName: req.body.productOwnerName,
-      developers: req.body.developers,
-      scrumMasterName: req.body.scrumMasterName,
-      startDate: req.body.startDate,
-      methodology: req.body.methodology
+      productName: req.body.productName.escape(),
+      productOwnerName: req.body.productOwnerName.escape(),
+      developers: req.body.developers.escape(),
+      scrumMasterName: req.body.scrumMasterName.escape(),
+      startDate: req.body.startDate.escape(),
+      methodology: req.body.methodology.escape()
     }
     // Some visual that it's finished.
     console.log(`Product ${newPosition}: ${products[newPosition].productName} added!`);

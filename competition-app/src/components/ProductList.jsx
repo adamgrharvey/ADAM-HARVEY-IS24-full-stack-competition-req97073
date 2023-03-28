@@ -13,6 +13,7 @@ export default function ProductList(props) {
 
   // State for the product creation and edit modal.
   const [modalData, setModalData] = useState({});
+  const [error, setError] = useState("");
   const [open, setOpen] = useState(false);
   const [refreshData, setRefreshData] = useState(true);
   const handleOpen = () => setOpen(true);
@@ -21,10 +22,12 @@ export default function ProductList(props) {
   // State for search.
   const [searchType, setSearchType] = useState("Developer");
   const [search, setSearch] = useState("");
+  const [count, setCount] = useState();
 
 
   const getApi = function (searchType, search) {
-    if (search.length >= 2) {
+    // If we there are characters in the search bar, use the search portion of the API when refreshing data.
+    if (search.length >= 1) {
       axios
         // cleanup the request URL, downcase and remove spaces.
         .get(`${backendURL}/api/search/${searchType.toLowerCase().replace(/\s/g, '')}/${search.toLowerCase().replace(/\s/g, '%20')}`, {
@@ -36,7 +39,6 @@ export default function ProductList(props) {
           // if server returns 200 (success)
           if (res.status === 200) {
             setProducts({ ...res.data })
-
           }
         })
         .catch((err) => {
@@ -44,6 +46,8 @@ export default function ProductList(props) {
         });
 
     } else {
+      // If not searching, get all the products.
+
       axios
         .get(`${backendURL}/api`, {
           headers: {
@@ -53,37 +57,45 @@ export default function ProductList(props) {
         .then((res) => {
           // if server returns 200 (success)
           if (res.status === 200) {
+            // Set our table to show everything.
+            setError("");
             setProducts({ ...res.data })
-
           }
         })
+        // 
         .catch((err) => {
+          setError(err.message);
           console.log(err);
         });
     }
   }
 
   useEffect(() => {
-    if (refreshData) {
+    if (refreshData === true) {
       setRefreshData(false);
       getApi(searchType, search);
     }
   }, [refreshData])
 
   useEffect(() => {
-    setRefreshData(true);
-  }, [search])
+    if (products) {
+      setCount(Object.keys(products).length)
+    }
+  }, [products])
+
 
 
   // If we have the API data (not undefined) return the table.
   if (products !== undefined) {
     return (
       <div>
-        <SearchBar search={search} setSearch={setSearch} setSearchType={setSearchType} />
+        <p>{error ? `Error: ${error}` : ""}</p>
+        <SearchBar setRefreshData={setRefreshData} search={search} setSearch={setSearch} setSearchType={setSearchType} />
         <div className="flex justify-center text-lg mt-5 font-sans font-medium table-wrp block max-h-96">
-          <table className="sticky top-0 border-collapse border-spacing-auto border-slate-500 border-b sticky top-0">
+          <table className="sticky top-0 border-collapse border-spacing-auto border-slate-500 border-b">
             <thead>
               <tr className="text-xl text-white">
+                <th className="bg-[#ff0000] border border-slate-600">{`Total: ${count}`}</th>
                 <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Product No.</th>
                 <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Product Name</th>
                 <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Scrum Master</th>
@@ -101,7 +113,7 @@ export default function ProductList(props) {
           </table>
           <ProductModal setRefreshData={setRefreshData} setProducts={setProducts} modalData={modalData} setModalData={setModalData} open={open} handleClose={handleClose} handleOpen={handleOpen} />
         </div >
-      </div>
+      </div >
 
     )
   }
