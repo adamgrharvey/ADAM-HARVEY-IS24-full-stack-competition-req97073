@@ -71,9 +71,7 @@ export default function ProductList(props) {
   }, [refreshData])
 
   useEffect(() => {
-    if (search.length >= 2) {
-      setRefreshData(true);
-    }
+    setRefreshData(true);
   }, [search])
 
 
