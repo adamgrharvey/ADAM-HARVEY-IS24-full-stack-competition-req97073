@@ -33,13 +33,13 @@ export default function ProductModal(props) {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (event, child) => {
-
+    // encode URIs for special characters
     if (event.target.id === "product-name-input") {
-      props.setModalData((prev) => ({ ...prev, productName: event.target.value }))
+      props.setModalData((prev) => ({ ...prev, productName: encodeURI(event.target.value) }))
     } else if (event.target.id === "scrum-master-input") {
-      props.setModalData((prev) => ({ ...prev, scrumMasterName: event.target.value }))
+      props.setModalData((prev) => ({ ...prev, scrumMasterName: encodeURI(event.target.value) }))
     } else if (event.target.id === "product-owner-input") {
-      props.setModalData((prev) => ({ ...prev, productOwnerName: event.target.value }))
+      props.setModalData((prev) => ({ ...prev, productOwnerName: encodeURI(event.target.value) }))
     }
 
     console.log(event);
@@ -53,17 +53,19 @@ export default function ProductModal(props) {
   }, [props.modalData])
 
   const handleDevelopersChange = (event, child) => {
+
     if (child.length <= 5) {
       props.setModalData((prev) => ({ ...prev, developers: child }))
     }
-
   }
 
   const handleMethodChange = (event, child) => {
+    // encode URIs for special characters
     props.setModalData((prev) => ({ ...prev, methodology: child.props.value }))
   }
 
   const handleDateChange = (event, child) => {
+    // encode URIs for special characters
     props.setModalData((prev) => ({ ...prev, startDate: `${event.$y}-${event.$M + 1}-${event.$D}` }))
   }
 
@@ -81,11 +83,22 @@ export default function ProductModal(props) {
       } else {
         setError(error.message);
       }
-      
+
     })
   }
 
   const sendEditRequest = function () {
+
+    let reqData = {...product};
+
+
+    // encode URIs for special characters
+    for (let i = 0; i < reqData.developers.length; i++) {
+      
+      reqData.developers[i] = encodeURI(reqData.developers[i]);
+      console.log(reqData.developers);
+    }
+
     return new Promise((resolve, reject) => {
       axios
         .put(`${backendURL}/api/products/${product.productId}`, product, {

@@ -29,8 +29,8 @@ export default function ProductList(props) {
     // If we there are characters in the search bar, use the search portion of the API when refreshing data.
     if (search.length >= 1) {
       axios
-        // cleanup the request URL, downcase and remove spaces.
-        .get(`${backendURL}/api/search/${searchType.toLowerCase().replace(/\s/g, '')}/${search.toLowerCase().replace(/\s/g, '%20')}`, {
+        // cleanup the request URL, downcase and encode.
+        .get(`${backendURL}/api/search/${searchType.toLowerCase().replace(/\s/g, '')}/${encodeURI(search.toLowerCase())}`, {
           headers: {
             'content-type': 'application/json',
           },
