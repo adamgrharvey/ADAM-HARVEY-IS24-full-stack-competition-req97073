@@ -83,7 +83,7 @@ export default function ProductList(props) {
               <Product handleOpen={handleOpen} handleClose={handleClose} setModalData={setModalData} key={`product-${i.productId}`} product={i} />)}
           </tbody>
         </table>
-        <ProductModal modalData={modalData} open={open} handleClose={handleClose} handleOpen={handleOpen}/>    
+        <ProductModal modalData={modalData} setModalData={setModalData} open={open} handleClose={handleClose} handleOpen={handleOpen}/>    
       </div >
     )
   }
