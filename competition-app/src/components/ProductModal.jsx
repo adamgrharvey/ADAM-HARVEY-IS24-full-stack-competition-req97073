@@ -175,7 +175,7 @@ export default function ProductModal(props) {
                   variant="filled"
                   disabled={product.developers.length > 4 ? true : false}
                   helperText={product.developers.length > 4 ? "Limit of 5 Developers." : ""}
-                  placeholder="Add Developer name"
+                  placeholder="Add Developer name | Press 'Enter' to add to list"
                   label="Developers"
                 />
               )}
@@ -194,7 +194,7 @@ export default function ProductModal(props) {
               select
               onChange={handleMethodChange}
               value={product.methodology}
-              label="Select"
+              label="Select methodology"
               helperText="Please select a methodology."
               variant="filled"
             >

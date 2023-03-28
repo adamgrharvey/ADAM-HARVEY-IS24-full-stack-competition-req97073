@@ -6,8 +6,6 @@ const port = 3000;
 const helpers = require('./helpers');
 // Fixes issues with CORS between Front-end and Backend.
 const cors = require('cors');
-// For input sanitizing
-const { check, validationResult } = require('express-validator');
 app.use(cors());
 
 // Read JSON data from frontend.

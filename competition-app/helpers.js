@@ -57,7 +57,7 @@ function generateProducts() {
   return products;
 }
 
-// Used above function to produce an Object of products. I want to use a consistent list so that issues can be more easily noticed and fixed. We will use the below object for the data.
+// Used above function to produce an Object of products. I want to use a consistent list so that issues can be more easily noticed and fixed. We will use the below object as the Seed data.
 
 const returnPremadeProducts = function () {
 

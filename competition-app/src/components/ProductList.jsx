@@ -14,16 +14,21 @@ export default function ProductList(props) {
 
   // State for the product creation and edit modal.
   const [modalData, setModalData] = useState({});
+  // Used for API feedback to screen.
   const [serverMessage, setServerMessage] = useState("");
+  // state to tell component if we are waiting for data from API
   const [loading, setLoading] = useState(true);
-  const [open, setOpen] = useState(false);
+  // state to tell if we need to ping API to update data.
   const [refreshData, setRefreshData] = useState(true);
+  // for the modal.
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   // State for search.
   const [searchType, setSearchType] = useState("Developer");
   const [search, setSearch] = useState("");
+  // State for the total products in table.
   const [count, setCount] = useState();
 
   // Update our front page when 'refreshData' state sets to true.
@@ -51,6 +56,7 @@ export default function ProductList(props) {
     }
   }, [refreshData])
 
+  // when our table is updated, count how many products are in the list.
   useEffect(() => {
     if (products) {
       setCount(Object.keys(products).length)
@@ -68,6 +74,7 @@ export default function ProductList(props) {
   }, [serverMessage])
 
 
+  // return Loading message if we are loading.
   if (loading) {
     return (
       <div>
@@ -76,6 +83,7 @@ export default function ProductList(props) {
     )
   }
 
+  // When !loading
   // If we have the API data (not undefined) return the table.
   if (products !== undefined) {
     return (
@@ -90,7 +98,7 @@ export default function ProductList(props) {
           <table className="sticky top-0 border-collapse border-spacing-auto border-slate-500 border-b">
             <thead>
               <tr className="text-xl text-white">
-                <th className="bg-[#ff0000] border border-slate-600">{`Total: ${count}`}</th>
+                <th className="bg-[#ff0000] border border-slate-600">{`Total Products: ${count}`}</th>
                 <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Product No.</th>
                 <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Product Name</th>
                 <th className="bg-[#1976d2] sticky top-0 border border-slate-600">Scrum Master</th>
