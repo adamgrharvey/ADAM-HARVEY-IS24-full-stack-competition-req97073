@@ -111,8 +111,10 @@ export default function ProductList(props) {
                 <Product searchType={searchType} search={search} handleOpen={handleOpen} handleClose={handleClose} setModalData={setModalData} key={`product-${i.productId}`} product={i} />)}
             </tbody>
           </table>
+          
           <ProductModal setRefreshData={setRefreshData} setProducts={setProducts} modalData={modalData} setModalData={setModalData} open={open} handleClose={handleClose} handleOpen={handleOpen} />
         </div >
+        <p>{count === 0 ? "No Results found." : ""}</p>
       </div >
 
     )
