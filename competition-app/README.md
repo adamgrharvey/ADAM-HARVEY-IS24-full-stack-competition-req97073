@@ -12,6 +12,7 @@ Please let me know if you run into issues running the app, or editing it while y
 - The app utilizes Express JS for the API component, and React for the frontend component. This requires two console instances running. While I have set the `npm start` script to run the React server on port 3001, run the Express server first, and then run the React app to avoid potential unforeseen issues.
 - In the first console window, start the Express server (using command `node server.js`).
 - In the second console, start the React app (using command `npm start`).
+- Access the frontend app at `http://localhost:3001/`.
 - You can view the Swagger documentation at `http://localhost:3000/api/api-docs/` for info on how to interface with the API.
 ## Final Product
 
