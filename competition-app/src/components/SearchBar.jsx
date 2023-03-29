@@ -9,7 +9,7 @@ export default function SearchBar(props) {
 
   // Start search when Enter key is pressed
   const handleKeyPress = function(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       props.setRefreshData(true)
     }
   }

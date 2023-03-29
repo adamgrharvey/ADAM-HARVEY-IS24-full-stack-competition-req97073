@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Product from "./Product";
 import * as React from 'react';
 import ProductModal from "./ProductModal";

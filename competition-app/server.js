@@ -14,7 +14,9 @@ const swaggerDocument = require('./swagger.json');
 app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // We will be using JSON data from frontend.
-app.use(express.json());
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // More CORS fixing, allow all the things.
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -110,7 +112,7 @@ app.get('/api/health', (req, res) => {
 app.put('/api/products/:productId', (req, res) => {
 
   // decodeURIs for special characters. Ensures consistency.
-
+  console.log(req);
   let productName = decodeURI(req.body.productName);
   let scrumMasterName = decodeURI(req.body.scrumMasterName);
   let productOwnerName = decodeURI(req.body.productOwnerName);
@@ -155,8 +157,8 @@ app.put('/api/products/:productId', (req, res) => {
   // If all checks pass, we can edit the product.
   else {
     // Then we need to edit the Product and give it the new data.
-    products[req.params.id] = {
-      productId: Number(req.params.id),
+    products[req.params.productId] = {
+      productId: Number(req.params.productId),
       productName: productName,
       productOwnerName: productOwnerName,
       developers: developers,
@@ -165,8 +167,8 @@ app.put('/api/products/:productId', (req, res) => {
       methodology: req.body.methodology
     }
     // Some visual that it's finished.
-    console.log(`Product ${req.params.id} edited!`);
-    console.log(products[req.params.id]);
+    console.log(`Product ${req.params.productId} edited!`);
+    console.log(products[req.params.productId]);
     // Send 'Created' status to client.
     res.status(202).send(`Product edit successful.`);
   }
@@ -240,7 +242,6 @@ app.post('/api/products', (req, res) => {
     res.status(201).send(`Product creation successful.`);
   }
 })
-
 
 app.listen(port, function (err) {
   if (err) console.log(err);
