@@ -1,6 +1,6 @@
 # Adam Harvey - IS24 Full Stack Developer Position Challenge
 
-My project meets all mandatory and bonus criteria mentioned in the challenge repo.
+My project meets all mandatory and bonus criteria mentioned in the challenge description!
 
 Please let me know if you run into issues running the app, or editing it while you are testing it. I will gladly help!
 
