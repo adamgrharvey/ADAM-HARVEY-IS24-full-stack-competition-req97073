@@ -3,11 +3,6 @@
 My project meets all mandatory and bonus criteria mentioned in the challenge repo.
 
 Please let me know if you run into issues running the app, or editing it while you are testing it. I will gladly help!
-## Final Product
-
-!["Landing Page"](https://github.com/adamgrharvey/ADAM-HARVEY-IS24-full-stack-competition-req97073/blob/master/competition-app/public/LandingPage.png)
-!["Product Add/Edit Modal"](https://github.com/adamgrharvey/ADAM-HARVEY-IS24-full-stack-competition-req97073/blob/master/competition-app/public/ProductModal.png)
-!["Swagger Docs"](https://github.com/adamgrharvey/ADAM-HARVEY-IS24-full-stack-competition-req97073/blob/master/competition-app/public/SwaggerDocs.png)
 
 ## Getting Started
 
@@ -17,3 +12,9 @@ Please let me know if you run into issues running the app, or editing it while y
 - The app utilizes Express JS for the API component, and React for the frontend component. This requires two console instances running. While I have set the `npm start` script to run the React server on port 3001, I recommend running the Express server first, and then run the React app.
 - In the first console window, start the Express server (using command `node server.js`).
 - In the second console, start the React app (using command `npm start`).
+
+## Final Product
+
+!["Landing Page"](https://github.com/adamgrharvey/ADAM-HARVEY-IS24-full-stack-competition-req97073/blob/master/competition-app/public/LandingPage.png)
+!["Product Add/Edit Modal"](https://github.com/adamgrharvey/ADAM-HARVEY-IS24-full-stack-competition-req97073/blob/master/competition-app/public/ProductModal.png)
+!["Swagger Docs"](https://github.com/adamgrharvey/ADAM-HARVEY-IS24-full-stack-competition-req97073/blob/master/competition-app/public/SwaggerDocs.png)
