@@ -167,7 +167,7 @@ app.put('/api/products/:productId', (req, res) => {
     }
     // Some visual that it's finished.
     console.log(`Product ${req.params.productId} edited!`);
-    console.log(products[req.params.productId]);
+    // console.log(products[req.params.productId]);
     // Send 'Created' status to client.
     res.status(202).send(`Product edit successful.`);
   }
