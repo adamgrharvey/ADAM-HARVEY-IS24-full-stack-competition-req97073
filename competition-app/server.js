@@ -112,7 +112,6 @@ app.get('/api/health', (req, res) => {
 app.put('/api/products/:productId', (req, res) => {
 
   // decodeURIs for special characters. Ensures consistency.
-  console.log(req);
   let productName = decodeURI(req.body.productName);
   let scrumMasterName = decodeURI(req.body.scrumMasterName);
   let productOwnerName = decodeURI(req.body.productOwnerName);
